@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aymen Phone | Shop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-text">
+                <h1>AYMEN PHONE</h1>
+                <p>STORE & SERVICES</p>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html" class="active">Shop</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <div class="cart-icon">
+                    <span>🛒</span>
+                    <span class="badge">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="shop-layout">
+
+        <div class="category-sidebar">
+            <div>
+                <div class="sidebar-title">Categories</div>
+                <div class="sidebar-item">Phones</div>
+                <div class="sidebar-item">Airpods</div>
+                <div class="sidebar-item">Tablets</div>
+                <div class="sidebar-item">Accessories</div>
+            </div>
+
+            <div>
+                <div class="sidebar-title">Price</div>
+                <div class="sidebar-item">Up to $100</div>
+                <div class="sidebar-item">Up to $200</div>
+                <div class="sidebar-item">Up to $300</div>
+                <div class="sidebar-item">Up to $400</div>
+                <div class="sidebar-item">Up to $500</div>
+                <div class="sidebar-item">Up to $600</div>
+                <div class="sidebar-item">Up to $700</div>
+            </div>
+        </div>
+
+        <div class="shop-content">
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <input type="text" id="brandSearch" placeholder="Search brand..." autocomplete="off">
+                    <button id="searchBtn">Search</button>
+                </div>
+            </div>
+
+            <div id="product-display" style="margin-top: 20px; color: #888; text-align:center;">
+                <p id="default-message">Select a category or search a brand.</p>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">Top Sales !</h3>
+                <div class="section-grid">
+                    <div class="section-card">
+                        <img src="images/phone1.jpg" alt="Phone 1">
+                        <p>Apple Iphone 17 pro max</p>
+                    </div>
+                    <div class="section-card">
+                        <img src="images/screenprotector.jpg" alt="Screen Protector">
+                        <p>Apple Screen Protector</p>
+                    </div>
+                    <div class="section-card">
+                        <img src="images/samsungcase.JPG" alt="Samsung Case">
+                        <p>Samsung Galaxy S24 Ultra Premium Clear Magnetic Case</p>
+                    </div>
+                    <div class="section-card">
+                        <img src="images/iphonecables.JPG" alt="Iphone Cables">
+                        <p>Apple Charging Cable for Iphone </p>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="section">
+                <h3 class="section-title">What's New ? </h3>
+                <div class="section-grid">
+                    <div class="section-card">
+                        <span class="badge-new">NEW</span>
+                        <img src="images/iphonelenses.JPG" alt="Iphone Lenses">
+                        <p>Apple Iphone Lenses </p>
+                    </div>
+                    <div class="section-card">
+                        <span class="badge-new">NEW</span>
+                        <img src="images/JBLairphones.JPG" alt="JBL Airphones">
+                        <p>JBL Tune 230NC TWS Airpods</p>
+                    </div>
+                    <div class="section-card">
+                        <span class="badge-new">NEW</span>
+                        <img src="images/phoneholder.JPG" alt="Phone Holder">
+                        <p>Phone Holder</p>
+                    </div>
+                    <div class="section-card">
+                        <span class="badge-new">NEW</span>
+                        <img src="images/phonechain.JPG" alt="Phone Chain">
+                        <p>Phone Chain</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
