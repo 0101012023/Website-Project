@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Apple Iphone Lenses",
+    "description": "Enhance your iPhone camera with these lenses.",
+    "price": "$99",
+    "image": "images/iphonelenses.JPG"
+  },
+  {
+    "title": "JBL Tune 230NC TWS Airpods",
+    "description": "High-quality wireless airpods with noise cancellation.",
+    "price": "$129",
+    "image": "images/JBLairphones.JPG"
+  },
+  {
+    "title": "Phone Holder",
+    "description": "Adjustable holder for safe phone usage on desks or in cars.",
+    "price": "$25",
+    "image": "images/phoneholder.JPG"
+  },
+  {
+    "title": "Phone Chain",
+    "description": "Stylish chain to hold your phone and prevent drops.",
+    "price": "$15",
+    "image": "images/phonechain.JPG"
+  }
+]
