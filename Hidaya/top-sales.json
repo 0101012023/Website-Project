@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Apple Iphone 17 pro max",
+    "description": "Latest iPhone with powerful performance and amazing camera.",
+    "price": "$1999",
+    "image": "images/phone1.jpg"
+  },
+  {
+    "title": "Apple Screen Protector",
+    "description": "Protect your iPhone screen from scratches and dust.",
+    "price": "$29",
+    "image": "images/screenprotector.jpg"
+  },
+  {
+    "title": "Samsung Galaxy S24 Ultra Premium Clear Magnetic Case",
+    "description": "Stylish and protective case for Samsung Galaxy S24 Ultra.",
+    "price": "$49",
+    "image": "images/samsungcase.JPG"
+  },
+  {
+    "title": "Apple Charging Cable for Iphone",
+    "description": "Durable charging cable compatible with all iPhones.",
+    "price": "$19",
+    "image": "images/iphonecables.JPG"
+  }
+]

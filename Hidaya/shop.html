@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aymen Phone | Shop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-text">
+                <h1>AYMEN PHONE</h1>
+                <p>STORE & SERVICES</p>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html" class="active">Shop</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <div class="cart-icon">
+                    <span>🛒</span>
+                    <span class="badge">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="shop-layout">
+
+        <div class="category-sidebar">
+            <div>
+                <div class="sidebar-title">Categories</div>
+                <div class="sidebar-item">Phones</div>
+                <div class="sidebar-item">Airpods</div>
+                <div class="sidebar-item">Tablets</div>
+                <div class="sidebar-item">Accessories</div>
+            </div>
+
+            <div>
+                <div class="sidebar-title">Price</div>
+                <div class="sidebar-item">Up to $100</div>
+                <div class="sidebar-item">Up to $200</div>
+                <div class="sidebar-item">Up to $300</div>
+                <div class="sidebar-item">Up to $400</div>
+                <div class="sidebar-item">Up to $500</div>
+                <div class="sidebar-item">Up to $600</div>
+                <div class="sidebar-item">Up to $700</div>
+            </div>
+        </div>
+
+        <div class="shop-content">
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <input type="text" id="brandSearch" placeholder="Search brand..." autocomplete="off">
+                    <button id="searchBtn">Search</button>
+                </div>
+            </div>
+
+            <div id="product-display" style="margin-top: 20px; color: #888; text-align:center;">
+                <p id="default-message">Select a category or search a brand.</p>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">Top Sales !</h3>
+                <div class="section-grid" id="top-sales-display">
+                    <!-- Top Sales Products Loaded Here via JSON -->
+                </div>
+            </div>
+
+            <br>
+
+            <div class="section">
+                <h3 class="section-title">What's New ? </h3>
+                <div class="section-grid" id="whats-new-display">
+                    <!-- What's New Products Loaded Here via JSON -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Modal -->
+    <div id="productModal">
+        <div class="modal-content">
+            <span id="closeModal">&times;</span>
+            <img id="modalImage" src="">
+            <h2 id="modalTitle"></h2>
+            <p id="modalDescription"></p>
+            <h3 id="modalPrice"></h3>
+            <button id="addToCartBtn">Add to Cart</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

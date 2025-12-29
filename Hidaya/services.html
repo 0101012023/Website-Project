@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aymen Phone | Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+
+<div class="bubbles">
+  <!-- 20 bubbles now instead of 10 -->
+  <span></span><span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span><span></span>
+  <br><span></span><span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span><span></span>
+</div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-text">
+                <h1>AYMEN PHONE</h1>
+                <p>STORE & SERVICES</p>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <div class="cart-icon">
+                    <span>🛒</span>
+                    <span class="badge">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="shop-section">
+        <h2>Our Services</h2>
+        <p>Details about your services will go here.</p>
+    </section>
+    
+
+
+    <section class="services">
+  <h2>Our Services</h2>
+  <p class="subtitle">Découvrez nos services pour vos appareils électroniques.</p>
+
+  <div class="services-grid">
+
+    <div class="service-card">
+      <i class="fas fa-tools"></i>
+      <h3>Repair Services</h3>
+      <p>Screen, battery & software repair</p>
+      <button onclick="openModal('repair')">Learn More</button>
+    </div>
+
+    <div class="service-card">
+      <i class="fas fa-truck"></i>
+      <h3>Delivery Service</h3>
+      <p>Fast & secure home delivery</p>
+      <button onclick="openModal('delivery')">Learn More</button>
+    </div>
+
+    <div class="service-card">
+      <i class="fas fa-shield-alt"></i>
+      <h3>Warranty</h3>
+      <p>Device & accessory warranty</p>
+      <button onclick="openModal('warranty')">Learn More</button>
+    </div>
+
+    <div class="service-card">
+      <i class="fas fa-sync-alt"></i>
+      <h3>Trade-In Program</h3>
+      <p>Upgrade your old phone</p>
+      <button onclick="openModal('trade')">Learn More</button>
+    </div>
+
+    <div class="service-card">
+      <i class="fas fa-cog"></i>
+      <h3>Setup & Configuration</h3>
+      <p>Setup & data transfer</p>
+      <button onclick="openModal('setup')">Learn More</button>
+    </div>
+
+    <div class="service-card">
+      <i class="fas fa-headset"></i>
+      <h3>Customer Support</h3>
+      <p>Tech advice & assistance</p>
+      <button onclick="openModal('support')">Learn More</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal" id="serviceModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h3 id="modalTitle"></h3>
+    <p id="modalText"></p>
+  </div>
+</div>
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     <!-- bar contact -->
+        
+<footer class="ss">
+  <div class="ss-container">
+
+    <!-- Qui sommes nous -->
+    <div class="ss-box">
+      <h3>WHO ARE WE ?</h3>
+      <p>
+        <strong>aymen-phone</strong> 
+         Premium smartphones, accessories, and expert repair services.
+      </p>
+    </div>
+
+    <!-- Pages -->
+    <div class="ss-box">
+      <h3>PAGES</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="services.html">Service</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Social -->
+    <div class="ss-box">
+      <h3>FOLLOW US</h3>
+    
+  <ul class="social-icons">
+    <li>
+      <a href="https://www.instagram.com/aymen_phone21?igsh=em02cng0MGhlM2Fq"><i class="fab fa-instagram"></i> Instagram</a>
+    </li>
+    <li>
+      <a href="https://www.tiktok.com/@aymen.smartphone?_r=1&_t=ZS-92cRNAWFs70"><i class="fab fa-tiktok"></i> Tiktok</a>
+    </li>
+    <li>
+      <a href="https://www.google.com/maps/place/90 Les allees du 20 aout 1955, skikda" target="_blank"><i class="fas fa-map-marker-alt"></i> Location
+</a>
+    </li>
+    <li>
+      <a href="#" onclick="navigator.clipboard.writeText('+2130776486355'); alert('numero copie');">
+  <i class="fas fa-phone"></i> +213 0776486355
+</a>
+    </li>
+  </ul>
+</div>
+
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom -->
+  <div class="ss-bottom">
+    <p>© 2025 Aymen Phone. All Rights Reserved.</p>
+  </div>
+</footer>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+

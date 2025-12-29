@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login | Aymen Phone</title>
+  <link rel="stylesheet" href="admin.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navbar (same as main site) -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo-text">
+        <h1>AYMEN PHONE</h1>
+        <p>STORE & SERVICES</p>
+      </div>
+
+      
+
+      <div class="nav-icons">
+        <div class="cart-icon">
+          <span>🛒</span>
+          <span class="badge">0</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Admin Login Card -->
+  <div class="admin-container">
+    <div class="admin-card">
+      <h2 class="admin-title">Admin Login</h2>
+      <form id="adminLoginForm">
+        <input type="text" placeholder="Username" id="username">
+        <input type="password" placeholder="Password" id="password">
+        <button type="submit">Login</button>
+        <p id="errorMsg"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
