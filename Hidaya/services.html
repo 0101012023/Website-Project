@@ -6,19 +6,19 @@
     <title>Aymen Phone | Services</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 </head>
 <body>
 
-<div class="bubbles">
-  <!-- 20 bubbles now instead of 10 -->
-  <span></span><span></span><span></span><span></span><span></span>
-  <span></span><span></span><span></span><span></span><span></span>
-  <span></span><span></span><span></span><span></span><span></span>
-  <span></span><span></span><span></span><span></span><span></span>
-  <br><span></span><span></span><span></span><span></span><span></span>
-  <span></span><span></span><span></span><span></span><span></span>
-</div>
+    <!-- Bubbles background -->
+    <div class="bubbles">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <br>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+    </div>
 
     <!-- Navbar -->
     <nav class="navbar">
@@ -30,7 +30,7 @@
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="shop.html">Shop</a></li>
-                <li><a href="services.html">Services</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="nav-icons">
@@ -42,182 +42,195 @@
         </div>
     </nav>
 
-    <section class="shop-section">
-        <h2>Our Services</h2>
-        <p>Details about your services will go here.</p>
-    </section>
-    
-
-
+    <!-- Services Section -->
     <section class="services">
-  <h2>Our Services</h2>
-  <p class="subtitle">Découvrez nos services pour vos appareils électroniques.</p>
+        <h2>Our Services</h2>
+        <p class="subtitle">Professional services for your devices</p>
 
-  <div class="services-grid">
+        <div class="services-grid">
 
-    <div class="service-card">
-      <i class="fas fa-tools"></i>
-      <h3>Repair Services</h3>
-      <p>Screen, battery & software repair</p>
-      <button onclick="openModal('repair')">Learn More</button>
+            <div class="service-card">
+                <i class="fas fa-tools"></i>
+                <h3>Repair Services</h3>
+                <p>Screen, battery & software repair</p>
+                <button onclick="openRepairModal()">Learn More</button>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-truck"></i>
+                <h3>Delivery Service</h3>
+                <p>Fast & secure delivery</p>
+                <button onclick="openDeliveryModal()">Learn More</button>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Warranty</h3>
+                <p>Warranty on devices & accessories</p>
+                <button onclick="openWarrantyModal()">Learn More</button>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-sync-alt"></i>
+                <h3>Trade-In</h3>
+                <p>Exchange your old phone</p>
+                <button onclick="openTradeModal()">Learn More</button>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-cog"></i>
+                <h3>Setup</h3>
+                <p>Phone setup & data transfer</p>
+                <button onclick="openSetupModal()">Learn More</button>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-headset"></i>
+                <h3>Support</h3>
+                <p>Customer technical support</p>
+                <button onclick="openSupportModal()">Learn More</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Modals -->
+    <!-- Repair Modal -->
+    <div class="modal" id="repairModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeRepairModal()">&times;</span>
+            <h2>Repair Service</h2>
+            <p class="subtitle"><strong>Devices sold in our store</strong></p>
+            <ul>
+                <li>Phones & tablets repair</li>
+                <li>Screen & battery replacement</li>
+                <li>Software issues</li>
+            </ul>
+            <p class="note">🛠 Fast & reliable repair</p>
+        </div>
     </div>
 
-    <div class="service-card">
-      <i class="fas fa-truck"></i>
-      <h3>Delivery Service</h3>
-      <p>Fast & secure home delivery</p>
-      <button onclick="openModal('delivery')">Learn More</button>
+    <!-- Delivery Modal -->
+    <div class="modal" id="deliveryModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDeliveryModal()">&times;</span>
+            <h2>Delivery Fees</h2>
+            <p class="subtitle"><strong>Delivery via ZR Express</strong></p>
+            <table class="delivery-table">
+                <thead>
+                    <tr>
+                        <th>Wilaya</th>
+                        <th>Express(Residence)</th>
+                        <th>Express (Stop Desk)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Toutes les lignes de wilaya ici -->
+                </tbody>
+            </table>
+            <p class="note">🚚 Fast delivery according to your province</p>
+        </div>
     </div>
 
-    <div class="service-card">
-      <i class="fas fa-shield-alt"></i>
-      <h3>Warranty</h3>
-      <p>Device & accessory warranty</p>
-      <button onclick="openModal('warranty')">Learn More</button>
+    <!-- Warranty Modal -->
+    <div class="modal" id="warrantyModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeWarrantyModal()">&times;</span>
+            <h2>Warranty</h2>
+            <p class="subtitle"><strong>Store warranty</strong></p>
+            <ul>
+                <li>Phones & tablets warranty</li>
+                <li>Accessories warranty</li>
+                <li>After-sales service</li>
+            </ul>
+            <p class="note">✅ Warranty depends on product</p>
+        </div>
     </div>
 
-    <div class="service-card">
-      <i class="fas fa-sync-alt"></i>
-      <h3>Trade-In Program</h3>
-      <p>Upgrade your old phone</p>
-      <button onclick="openModal('trade')">Learn More</button>
+    <!-- Trade Modal -->
+    <div class="modal" id="tradeModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeTradeModal()">&times;</span>
+            <h2>Trade-In</h2>
+            <ul>
+                <li>Exchange old devices</li>
+                <li>Discount on new purchase</li>
+                <li>Phones & tablets accepted</li>
+            </ul>
+            <p class="note">🔄 Upgrade easily</p>
+        </div>
     </div>
 
-    <div class="service-card">
-      <i class="fas fa-cog"></i>
-      <h3>Setup & Configuration</h3>
-      <p>Setup & data transfer</p>
-      <button onclick="openModal('setup')">Learn More</button>
+    <!-- Setup Modal -->
+    <div class="modal" id="setupModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSetupModal()">&times;</span>
+            <h2>Device Setup</h2>
+            <ul>
+                <li>Account configuration</li>
+                <li>Data transfer</li>
+                <li>App installation</li>
+            </ul>
+            <p class="note">⚙ Ready to use</p>
+        </div>
     </div>
 
-    <div class="service-card">
-      <i class="fas fa-headset"></i>
-      <h3>Customer Support</h3>
-      <p>Tech advice & assistance</p>
-      <button onclick="openModal('support')">Learn More</button>
+    <!-- Support Modal -->
+    <div class="modal" id="supportModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSupportModal()">&times;</span>
+            <h2>Customer Support</h2>
+            <ul>
+                <li>Technical help</li>
+                <li>Usage assistance</li>
+                <li>After-sales support</li>
+            </ul>
+            <p class="note">🎧 Always here</p>
+        </div>
     </div>
 
-  </div>
-</section>
+    <!-- Footer -->
+    <footer class="ss">
+        <div class="ss-container">
 
-<!-- MODAL -->
-<div class="modal" id="serviceModal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <h3 id="modalTitle"></h3>
-    <p id="modalText"></p>
-  </div>
-</div>
+            <!-- Who we are -->
+            <div class="ss-box">
+                <h3>WHO ARE WE ?</h3>
+                <p>
+                    <strong>Aymen Phone</strong> Premium smartphones, accessories, and expert repair services.
+                </p>
+            </div>
 
-   
+            <!-- Pages -->
+            <div class="ss-box">
+                <h3>PAGES</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="services.html">Service</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
 
+            <!-- Social -->
+            <div class="ss-box">
+                <h3>FOLLOW US</h3>
+                <ul class="social-icons">
+                    <li><a href="https://www.instagram.com/aymen_phone21?igsh=em02cng0MGhlM2Fq"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="https://www.tiktok.com/@aymen.smartphone?_r=1&_t=ZS-92cRNAWFs70"><i class="fab fa-tiktok"></i> Tiktok</a></li>
+                    <li><a href="https://www.google.com/maps/place/90 Les allees du 20 aout 1955, skikda" target="_blank"><i class="fas fa-map-marker-alt"></i> Location</a></li>
+                    <li><a href="#" onclick="navigator.clipboard.writeText('+2130776486355'); alert('numero copie');"><i class="fas fa-phone"></i> +213 0776486355</a></li>
+                </ul>
+            </div>
 
+        </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     <!-- bar contact -->
-        
-<footer class="ss">
-  <div class="ss-container">
-
-    <!-- Qui sommes nous -->
-    <div class="ss-box">
-      <h3>WHO ARE WE ?</h3>
-      <p>
-        <strong>aymen-phone</strong> 
-         Premium smartphones, accessories, and expert repair services.
-      </p>
-    </div>
-
-    <!-- Pages -->
-    <div class="ss-box">
-      <h3>PAGES</h3>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="services.html">Service</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-
-    <!-- Social -->
-    <div class="ss-box">
-      <h3>FOLLOW US</h3>
-    
-  <ul class="social-icons">
-    <li>
-      <a href="https://www.instagram.com/aymen_phone21?igsh=em02cng0MGhlM2Fq"><i class="fab fa-instagram"></i> Instagram</a>
-    </li>
-    <li>
-      <a href="https://www.tiktok.com/@aymen.smartphone?_r=1&_t=ZS-92cRNAWFs70"><i class="fab fa-tiktok"></i> Tiktok</a>
-    </li>
-    <li>
-      <a href="https://www.google.com/maps/place/90 Les allees du 20 aout 1955, skikda" target="_blank"><i class="fas fa-map-marker-alt"></i> Location
-</a>
-    </li>
-    <li>
-      <a href="#" onclick="navigator.clipboard.writeText('+2130776486355'); alert('numero copie');">
-  <i class="fas fa-phone"></i> +213 0776486355
-</a>
-    </li>
-  </ul>
-</div>
-
-
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Bottom -->
-  <div class="ss-bottom">
-    <p>© 2025 Aymen Phone. All Rights Reserved.</p>
-  </div>
-</footer>
-
+        <!-- Bottom -->
+        <div class="ss-bottom">
+            <p>© 2025 Aymen Phone. All Rights Reserved.</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
 </html>
-
-

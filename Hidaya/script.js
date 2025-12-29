@@ -69,25 +69,52 @@ $(document).ready(function() {
 
 
 
-/* contact-faq*/
- 
-document.addEventListener("DOMContentLoaded", () => {
-  const faqQuestions = document.querySelectorAll(".faq-question");
+// services-fentre//
 
-  faqQuestions.forEach(question => {
-    question.addEventListener("click", () => {
-      const faqItem = question.parentElement;
+// Delivery modal
+function openDeliveryModal() {
+  document.getElementById("deliveryModal").style.display = "flex";
+}
+function closeDeliveryModal() {
+  document.getElementById("deliveryModal").style.display = "none";
+}
 
-      // نغلق كامل الأسئلة
-      document.querySelectorAll(".faq-item").forEach(item => {
-        if (item !== faqItem) {
-          item.classList.remove("active");
-        }
-      });
+// Repair modal
+function openRepairModal() {
+  document.getElementById("repairModal").style.display = "flex";
+}
+function closeRepairModal() {
+  document.getElementById("repairModal").style.display = "none";
+}
 
-      // نفتح أو نغلق السؤال المضغوط
-      faqItem.classList.toggle("active");
-    });
-  });
-});
+// Warranty modal
+function openWarrantyModal() {
+  document.getElementById("warrantyModal").style.display = "flex";
+}
+function closeWarrantyModal() {
+  document.getElementById("warrantyModal").style.display = "none";
+}
 
+// Trade-In modal
+function openTradeModal() {
+  document.getElementById("tradeModal").style.display = "flex";
+}
+function closeTradeModal() {
+  document.getElementById("tradeModal").style.display = "none";
+}
+
+// Setup modal
+function openSetupModal() {
+  document.getElementById("setupModal").style.display = "flex";
+}
+function closeSetupModal() {
+  document.getElementById("setupModal").style.display = "none";
+}
+
+// Support modal
+function openSupportModal() {
+  document.getElementById("supportModal").style.display = "flex";
+}
+function closeSupportModal() {
+  document.getElementById("supportModal").style.display = "none";
+}
