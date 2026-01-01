@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aymen Phone | Shop</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo-text">
+        <h1>AYMEN PHONE</h1>
+        <p>STORE & SERVICES</p>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html" class="active">Shop</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <div class="nav-icons">
+        <div class="cart-icon">
+          <a href="cart.html" class="cart-link">🛒</a>
+          <span class="badge" id="cartBadge">0</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+
+  <!-- Shop Layout -->
+  <section class="shop-layout">
+
+    <!-- Sidebar -->
+    <div class="category-sidebar">
+      <div>
+        <div class="sidebar-title">Categories</div>
+        <div class="sidebar-item cat" data-cat="Phones">Phones</div>
+        <div class="sidebar-item cat" data-cat="Airpods">Airpods</div>
+        <div class="sidebar-item cat" data-cat="Tablets">Tablets</div>
+        <div class="sidebar-item cat" data-cat="Accessories">Accessories</div>
+        <div class="sidebar-item cat" data-cat="">All</div>
+      </div>
+
+      <div>
+        <div class="sidebar-title">Price</div>
+        <div class="sidebar-item price" data-min="1000" data-max="2900">1000 to 2900 DA</div>
+        <div class="sidebar-item price" data-min="2900"  data-max="5000">2900 to 5000 DA</div>
+        <div class="sidebar-item price" data-min="5000" data-max="10000">5000 to 10000 DA</div>
+        <div class="sidebar-item price" data-min="10000"  data-max="20000">10000 to 20000 DA</div>
+        <div class="sidebar-item price" data-min="20000" data-max="28000">20000 to 28000 DA</div>
+        <div class="sidebar-item price" data-min="28000"  data-max="36000">28000 to 36000 DA</div>
+        <div class="sidebar-item price" data-min="36000"  data-max="45000">36000 to 45000 DA</div>
+        <div class="sidebar-item price" data-min="45000" data-max="65000">45000 to 65000 DA</div>
+        <div class="sidebar-item price" data-min="65000" data-max="75000">65000 to 75000 DA</div>
+        <div class="sidebar-item price" data-min="75000" data-max="90000">75000 to 90000 DA</div>
+        <div class="sidebar-item price" data-min="90000" data-max="150000">90000 to 150000 DA</div>
+        <div class="sidebar-item price" data-min="150000" data-max="230000">150000 to 230000 DA</div>
+        <div class="sidebar-item price" data-min="" data-max="">Any</div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="shop-content">
+
+      <!-- Search -->
+      <div class="search-container">
+        <div class="search-wrapper">
+          <input type="text" id="brandSearch" placeholder="Search brand..." autocomplete="off" />
+          <button id="searchBtn">Search</button>
+        </div>
+      </div>
+
+      <!-- Default message -->
+      <div id="product-display" class="product-display">
+        <p id="default-message">Select a category or search a brand.</p>
+      </div>
+
+      <!-- Top Sales -->
+      <div class="section">
+        <h3 class="section-title">Top Sales !</h3>
+        <div class="section-grid" id="top-sales-display"></div>
+      </div>
+
+      <br />
+
+      <!-- What's New -->
+      <div class="section">
+        <h3 class="section-title">What's New ?</h3>
+        <div class="section-grid" id="whats-new-display"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Product Modal -->
+  <div id="productModal">
+    <div class="modal-content">
+      <span id="closeModal">&times;</span>
+      <img id="modalImage" src="" alt="Product Image" />
+      <h2 id="modalTitle"></h2>
+      <p id="modalDescription"></p>
+      <h3 id="modalPrice"></h3>
+
+      <!-- extra: brand/category/specs -->
+      <div id="modalExtra" class="modal-extra"></div>
+
+      <button id="addToCartBtn">Add to Cart</button>
+    </div>
+  </div>
+  
+  <!--script -->
+  <script src="script.js"></script>
+
+
+</body>
+</html>

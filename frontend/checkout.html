@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aymen Phone | Checkout</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo-text">
+        <h1>AYMEN PHONE</h1>
+        <p>STORE & SERVICES</p>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <div class="nav-icons">
+        <div class="cart-icon">
+          <a href="cart.html" class="cart-link">🛒</a>
+          <span class="badge" id="cartBadge">0</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Checkout Card Wrapper -->
+  <div class="checkout-wrapper">
+    <div class="checkout-card">
+
+      <div class="checkout-header">CHECKOUT</div>
+
+      <!-- Shipping -->
+      <div class="checkout-section">
+        <h3>Shipping</h3>
+
+        <div class="grid-2">
+
+          <div class="field">
+            <label>Fisrt name</label>
+            <input id="nom" type="text" placeholder="Fisrt name" required>
+          </div>
+
+          <div class="field">
+            <label>Last Name</label>
+            <input id="prenom" type="text" placeholder="Last Name" required>
+          </div>
+
+          <div class="field">
+            <label>Phone</label>
+            <input id="tel" type="tel" placeholder="06...." required>
+          </div>
+
+          <div class="field">
+            <label>State</label>
+            <select id="wilaya" required></select>
+          </div>
+
+        
+
+          <div class="field">
+            <label>Type Delivery</label>
+            <select id="livraisonType" required>
+              <option value="">Choose...</option>
+              <option value="bureau">Stop Desk</option>
+              <option value="domicile">Residence</option>
+            </select>
+          </div>
+         
+
+          <div class="field">
+            <label>Email</label>
+            <input id="email" type="email" placeholder="email" required>
+          </div>
+        
+
+        </div>
+      </div>
+
+      <!-- Payment Summary -->
+      <div class="checkout-section">
+        <h3>Payment</h3>
+
+        
+        <!--  NEW: Order Summary Bar (items + qty) -->
+        <div class="order-summary">
+          <div class="order-summary-head">
+            <span class="order-title">Order Summary</span>
+            <span class="order-count" id="orderCount">0 items</span>
+          </div>
+
+          <div class="order-items" id="orderItems"></div>
+        </div>
+
+
+
+        <div class="payment-lines">
+          <div class="line">
+            <span>Shipping:</span>
+            <span id="sumDelivery">0 DA</span>
+          </div>
+
+          <div class="line">
+            <span>Subtotal:</span>
+            <span id="sumProducts">0 DA</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer total -->
+      <div class="checkout-footer">
+        <div>
+          <div class="muted">TOTAL</div>
+          <div class="total-big" id="sumTotal">0 DA</div>
+        </div>
+
+        <button id="checkoutBtn" class="btn-primary" type="button">Checkout</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="ss">
+    <div class="ss-container">
+
+      <div class="ss-box">
+        <h3>WHO ARE WE ?</h3>
+        <p>
+          <strong>Aymen Phone</strong><br>
+          Premium smartphones, accessories, and expert repair services.
+        </p>
+      </div>
+
+      <div class="ss-box">
+        <h3>PAGES</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="services.html">Service</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="ss-box">
+        <h3>FOLLOW US</h3>
+        <ul class="social-icons">
+
+          <li>
+            <a href="https://www.instagram.com/aymen_phone21?igsh=em02cng0MGhlM2Fq">
+              Instagram
+            </a>
+          </li>
+
+          <li>
+            <a href="https://www.tiktok.com/@aymen.smartphone?_r=1&_t=ZS-92cRNAWFs70">
+              Tiktok
+            </a>
+          </li>
+
+          <li>
+            <a href="https://www.google.com/maps/place/90 Les allees du 20 aout 1955, skikda" target="_blank">
+              Location
+            </a>
+          </li>
+
+          <li>
+            <a href="#" onclick="navigator.clipboard.writeText('+2130776486355'); alert('Numéro copié');">
+              +213 0776486355
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="ss-bottom">
+      <p>© 2025 Aymen Phone. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- <!-- Footer -->
+    <footer class="ss">
+        <div class="ss-container">
+
+            <!-- Who we are -->
+            <div class="ss-box">
+                <h3>WHO ARE WE ?</h3>
+                <p>
+                    <strong>Aymen Phone</strong><br>
+                    Premium smartphones, accessories, and expert repair services.
+                </p>
+            </div>
+
+            <!-- Pages -->
+            <div class="ss-box">
+                <h3>PAGES</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="services.html">Service</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Social -->
+            <div class="ss-box">
+                <h3>FOLLOW US</h3>
+                <ul class="social-icons">
+
+                    <li>
+                        <a href="https://www.instagram.com/aymen_phone21?igsh=em02cng0MGhlM2Fq">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="https://www.tiktok.com/@aymen.smartphone?_r=1&_t=ZS-92cRNAWFs70">
+                            <i class="fab fa-tiktok"></i> Tiktok
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="https://www.google.com/maps/place/90 Les allees du 20 aout 1955, skikda" target="_blank">
+                            <i class="fas fa-map-marker-alt"></i> Location
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#"
+                           onclick="navigator.clipboard.writeText('+2130776486355'); alert('Numéro copié');">
+                            <i class="fas fa-phone"></i> +213 0776486355
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Bottom -->
+        <div class="ss-bottom">
+            <p>© 2025 Aymen Phone. All Rights Reserved.</p>
+        </div>
+    </footer>
+ 
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- script -->
+  <script src="script.js"></script>
+  
+</body>
+</html>

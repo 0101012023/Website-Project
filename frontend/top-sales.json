@@ -1,0 +1,62 @@
+[
+  {
+    "id": "ts1",
+    "title": "iPhone 13 Pro Max",
+    "description": "Apple smartphone with A15 Bionic chip",
+    "price_num": 185000,
+    "brand": "Apple",
+    "category": "Phones",
+    "image": "images/iphone13promax.jpg",
+    "specs": {
+     "RAM": "6 GB",
+      "Storage": "256 GB",
+      "Color": "Graphite",
+      "Battery": "4352 mAh"
+    }
+  },
+ 
+   {
+    "id": "ts2",
+    "title": "Samsung Galaxy S23 Ultra",
+    "description": "High-end Android phone with S-Pen",
+    "price_num": 175000,
+    "brand": "Samsung",
+    "category": "Phones",
+    "image": "images/s23ultra.jpg",
+    "specs": {
+      "RAM": "12 GB",
+      "Storage": "256 GB",
+      "Color": "Black",
+      "Battery": "5000 mAh"
+    }
+  },
+  
+  {
+    "id": "ts3",
+    "title": "Apple AirPods Pro (2nd Gen)",
+    "description": "Noise cancelling wireless earbuds",
+    "price_num": 42000,
+    "brand": "Apple",
+    "category": "Airpods",
+    "image": "images/airpodspro2.jpg",
+    "specs": {
+      "Connectivity": "Bluetooth",
+      "Noise Canceling": "Yes",
+      "Battery": "30 hours"
+    }
+  },
+  {
+    "id": "ts4",
+    "title": "Baseus Fast Charger 20W",
+    "description": "USB-C fast charging adapter",
+    "price_num": 4500,
+    "brand": "Baseus",
+    "category": "Accessories",
+    "image": "images/baseus20w.jpg",
+    "specs": {
+      "Power": "20W",
+      "Port": "USB-C",
+      "Compatibility": "iPhone / Android"
+    }
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "wn1",
+    "title": "iPhone 15 Pro",
+    "description": "Apple flagship with titanium design",
+    "price_num": 195000,
+    "brand": "Apple",
+    "category": "Phones",
+    "image": "images/iphone15pro.jpg",
+    "specs": {
+      "RAM": "8 GB",
+      "Storage": "256 GB",
+      "Color": "Natural Titanium",
+      "Battery": "3274 mAh"
+    }
+  },
+  
+  {
+    "id": "wn2",
+    "title": "Redmi Note 13 Pro",
+    "description": "Affordable phone with AMOLED display",
+    "price_num": 58000,
+    "brand": "Redmi",
+    "category": "Phones",
+    "image": "images/redminote13pro.jpg",
+    "specs": {
+      "RAM": "8 GB",
+      "Storage": "256 GB",
+      "Display": "AMOLED",
+      "Battery": "5100 mAh"
+    }
+  },
+  {
+    "id": "wn3",
+    "title": "Huawei MatePad 11",
+    "description": "Powerful tablet for work and study",
+    "price_num": 82000,
+    "brand": "Huawei",
+    "category": "Tablets",
+    "image": "images/matepad11.jpg",
+    "specs": {
+      "Screen": "11 inches",
+      "RAM": "6 GB",
+      "Storage": "128 GB",
+      "Battery": "7250 mAh"
+    }
+  },
+  {
+    "id": "wn4",
+    "title": "Anker Power Bank 20000mAh",
+    "description": "High capacity fast charging power bank",
+    "price_num": 7800,
+    "brand": "Anker",
+    "category": "Accessories",
+    "image": "images/anker20000.jpg",
+    "specs": {
+      "Capacity": "20000 mAh",
+      "Ports": "USB / USB-C",
+      "Fast Charge": "Yes"
+    }
+  }
+]
