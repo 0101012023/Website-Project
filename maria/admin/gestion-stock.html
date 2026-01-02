@@ -1,55 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stock Management | Aymen Phone</title>
-    <link rel="stylesheet" href="admin.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stock Management | Aymen Phone</title>
+<link rel="stylesheet" href="admin.css">
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo-text">
-                <h1>AYMEN PHONE</h1>
-                <p>STORE & SERVICES</p>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Stock Management -->
-    <div class="admin-stocks-container">
-        <h2>Stock Management</h2>
-        <p>Here you can see all your products, add new ones, and delete them.</p>
-
-        <!-- Add Product Form -->
-        <div class="add-stock">
-            <input type="text" id="productName" placeholder="Product Name">
-            <input type="text" id="productBrand" placeholder="Brand">
-            <input type="number" id="productQty" placeholder="Quantity">
-            <input type="number" step="0.01" id="productPrice" placeholder="Price ($)">
-            <button id="addBtn">Add Product</button>
-        </div>
-
-        <!-- Product Table -->
-        <table id="stockTable" class="stock-table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Brand</th>
-                    <th>Quantity</th>
-                    <th>Price (DA)</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Products will appear here -->
-            </tbody>
-        </table>
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo-text">
+      <h1>AYMEN PHONE</h1>
+      <p>STORE & SERVICES</p>
     </div>
+  </div>
+</nav>
 
-    <script src="admin.js"></script>
+<div class="back-dashboard">
+  <a href="admin-dashboard.html"><button>Back to Dashboard</button></a>
+</div>
+
+<div class="admin-stocks-container">
+  <h2>Stock Management</h2>
+  <p>Here you can see all your products, add new ones, and delete them.</p>
+  <br>
+
+  <!-- Add Product Form -->
+  <div class="add-stock">
+    <input type="text" id="productName" placeholder="Product Name">
+    <input type="text" id="productBrand" placeholder="Brand">
+    <select id="productCategory">
+      <option value="">Select Category</option>
+      <option value="phones">Phones</option>
+      <option value="airpods">Airpods</option>
+      <option value="tables">Tables</option>
+      <option value="accessories">Accessories</option>
+    </select>
+    <input type="number" id="productQty" placeholder="Quantity">
+    <input type="number" step="0.01" id="productPrice" placeholder="Price (DA)">
+    <input type="text" id="productImage" placeholder="Image URL">
+    <button id="addBtn">Add Product</button>
+  </div>
+
+  <!-- Product Table -->
+  <table id="stockTable" class="stock-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Brand</th>
+        <th>Category</th>
+        <th>Quantity</th>
+        <th>Price (DA)</th>
+        <th>Image</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Products will appear here -->
+    </tbody>
+  </table>
+</div>
+
+<script>
+// Load products from LocalStorage
+let products = JSON.parse(localStorage.getItem("allProducts")) || [];
+const tableBody = document.querySelector("#stockTable tbody");
+
+// Render the table
+function renderTable() {
+  tableBody.innerHTML = "";
+  products.forEach((prod, index) => {
+    const row = tableBody.insertRow();
+    row.insertCell(0).innerText = prod.name;
+    row.insertCell(1).innerText = prod.brand;
+    row.insertCell(2).innerText = prod.category;
+    row.insertCell(3).innerText = prod.quantity;
+    row.insertCell(4).innerText = prod.price;
+    row.insertCell(5).innerHTML = prod.image ? `<img src="${prod.image}" width="50">` : "N/A";
+
+    const actionCell = row.insertCell(6);
+    const delBtn = document.createElement("button");
+    delBtn.innerText = "Delete";
+    delBtn.classList.add("delete-btn");
+    delBtn.onclick = () => {
+      products.splice(index, 1);
+      localStorage.setItem("allProducts", JSON.stringify(products));
+      renderTable();
+    };
+    actionCell.appendChild(delBtn);
+  });
+}
+
+// Add new product
+document.getElementById("addBtn").addEventListener("click", () => {
+  const name = document.getElementById("productName").value.trim();
+  const brand = document.getElementById("productBrand").value.trim();
+  const category = document.getElementById("productCategory").value.trim();
+  const quantity = document.getElementById("productQty").value.trim();
+  const price = document.getElementById("productPrice").value.trim();
+  const image = document.getElementById("productImage").value.trim();
+
+  if (!name || !brand || !category || !quantity || !price) {
+    alert("Please fill all fields!");
+    return;
+  }
+
+  products.push({ name, brand, category, quantity, price, image });
+  localStorage.setItem("allProducts", JSON.stringify(products));
+  renderTable();
+
+  // Clear inputs
+  document.getElementById("productName").value = "";
+  document.getElementById("productBrand").value = "";
+  document.getElementById("productCategory").value = "";
+  document.getElementById("productQty").value = "";
+  document.getElementById("productPrice").value = "";
+  document.getElementById("productImage").value = "";
+});
+
+// Render on page load
+renderTable();
+</script>
+
 </body>
 </html>

@@ -208,3 +208,74 @@ body {
 .delete-btn:hover {
     background: #f0c94f;
 }
+
+/* ================== Dashboard Buttons ================== */
+.dashboard-buttons {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.dashboard-btn {
+    flex: 1 1 200px;
+    text-align: center;
+    padding: 20px;
+    background-color: #C5A059;
+    color: #141414;
+    font-weight: 700;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.dashboard-btn:hover {
+    background-color: #f0c94f;
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(197,160,89,0.5);
+}
+
+                /* select category */
+.add-stock input, 
+.add-stock select,   /* added this line */
+.add-stock button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #C5A059;
+    background: #141414;
+    color: #545454;
+    outline: none;
+}
+
+.add-stock button {
+    background: #C5A059;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.add-stock button:hover {
+    background: #f0c94f;
+}
+
+/* button */
+.back-dashboard {
+    margin: 20px 0;
+}
+
+.back-dashboard button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #C5A059;
+    background: #C5A059;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.back-dashboard button:hover {
+    background: #f0c94f;
+}
+
