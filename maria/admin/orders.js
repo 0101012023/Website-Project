@@ -1,75 +1,52 @@
 const tableBody = document.querySelector("#ordersTable tbody");
 
-// Example orders (you can delete these later)
-let orders = [
-    {
-        id: 1,
-        clientName: "Ahmed Benali",
-        phone: "0550123456",
-        address: "Algiers",
-        deliveryType: "Home",
-        products: [
-            { name: "iPhone 14", qty: 1 },
-            { name: "AirPods Pro", qty: 1 }
-        ],
-        time: "2026-01-02 15:30",
-        totalPrice: 265000
-    },
-    {
-        id: 2,
-        clientName: "Sara Khaldi",
-        phone: "0669876543",
-        address: "Oran",
-        deliveryType: "Desk",
-        products: [
-            { name: "Samsung S23", qty: 1 }
-        ],
-        time: "2026-01-02 16:10",
-        totalPrice: 198000
-    }
-];
+let orders = [];
+let deliveryPrices = [];
 
-// Load saved orders
-const savedOrders = JSON.parse(localStorage.getItem("allOrders"));
-if (savedOrders) {
-    orders = savedOrders;
-}
+// Load delivery prices
+fetch('delivery.json')
+    .then(res => res.json())
+    .then(data => deliveryPrices = data)
+    .catch(err => console.error(err));
 
-// Render orders
-function renderOrders() {
+// Load orders
+fetch('orders.json')
+    .then(res => res.json())
+    .then(data => {
+        orders = data;
+        displayOrders();
+    })
+    .catch(err => console.error(err));
+
+function displayOrders() {
     tableBody.innerHTML = "";
 
-    orders.forEach((order, index) => {
+    orders.forEach(order => {
         const row = tableBody.insertRow();
 
         row.insertCell(0).innerText = order.id;
-        row.insertCell(1).innerText = order.clientName;
-        row.insertCell(2).innerText = order.phone;
-        row.insertCell(3).innerText = order.address;
-        row.insertCell(4).innerText = order.deliveryType;
+        row.insertCell(1).innerText = order.client_name + " " + order.client_surname;
+        row.insertCell(2).innerText = order.time;
+        row.insertCell(3).innerText = order.phone;
+        row.insertCell(4).innerText = order.address;
+        row.insertCell(5).innerText = order.delivery_type;
 
-        // Products list
-        const productsCell = row.insertCell(5);
-        productsCell.innerHTML = order.products
-            .map(p => `${p.name} (x${p.qty})`)
-            .join("<br>");
+        // Products
+        const productsCell = row.insertCell(6);
+        let productsText = "";
+        let total = 0;
+        order.products.forEach(p => {
+            productsText += `${p.name} x ${p.quantity} = ${p.price*p.quantity} DA\n`;
+            total += p.price*p.quantity;
+        });
+        productsCell.innerText = productsText;
 
-        row.insertCell(6).innerText = order.time;
-        row.insertCell(7).innerText = order.totalPrice;
+        // Add delivery price
+        const delivery = deliveryPrices.find(d => d.wilaya === order.wilaya);
+        if(delivery) {
+            total += order.delivery_type === "home" ? delivery.home : delivery.desk;
+        }
 
-        // Action
-        const actionCell = row.insertCell(8);
-        const delBtn = document.createElement("button");
-        delBtn.innerText = "Delete";
-        delBtn.classList.add("delete-btn");
-        delBtn.onclick = () => {
-            orders.splice(index, 1);
-            localStorage.setItem("allOrders", JSON.stringify(orders));
-            renderOrders();
-        };
-        actionCell.appendChild(delBtn);
+        row.insertCell(7).innerText = total;
     });
 }
-
-// Initial render
-renderOrders();

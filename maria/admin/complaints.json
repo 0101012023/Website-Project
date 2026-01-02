@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "client_name": "Ahmed",
+        "client_surname": "Bensalah",
+        "email": "ahmed@example.com",
+        "time": "2026-01-01 10:00",
+        "message": "I have not received my order yet."
+    },
+    {
+        "id": 2,
+        "client_name": "Sara",
+        "client_surname": "Khaled",
+        "email": "sara@example.com",
+        "time": "2026-01-01 11:30",
+        "message": "My AirPods are defective."
+    },
+    {
+        "id": 3,
+        "client_name": "Youssef",
+        "client_surname": "Amrani",
+        "email": "youssef@example.com",
+        "time": "2026-01-01 12:15",
+        "message": "Can you update me on the delivery?"
+    }
+]

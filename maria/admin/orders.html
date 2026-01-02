@@ -5,52 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orders | Aymen Phone</title>
     <link rel="stylesheet" href="admin.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo-text">
-                <h1>AYMEN PHONE</h1>
-                <p>STORE & SERVICES</p>
-            </div>
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo-text">
+            <h1>AYMEN PHONE</h1>
+            <p>STORE & SERVICES</p>
         </div>
-    </nav>
-
-    <div class="back-dashboard">
-        <a href="admin-dashboard.html">
-            <button>Back to Dashboard</button>
-        </a>
     </div>
+</nav>
 
-    <!-- Orders Management -->
-    <div class="admin-stocks-container">
-        <h2>Orders</h2>
-        <p>Here you can see all customer orders.</p>
-        <br>
+<div class="back-dashboard">
+    <a href="admin-dashboard.html"><button>Back to Dashboard</button></a>
+</div>
 
-        <table id="ordersTable" class="stock-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Client Name</th>
-                    <th>Phone</th>
-                    <th>Address</th>
-                    <th>Delivery</th>
-                    <th>Products</th>
-                    <th>Order Time</th>
-                    <th>Total (DA)</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Orders appear here -->
-            </tbody>
-        </table>
-    </div>
+<div class="admin-stocks-container">
+    <h2>Orders</h2>
+    <p>All orders with products and delivery prices.</p>
 
-    <script src="orders.js"></script>
+    <table id="ordersTable" class="stock-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Client Name</th>
+                <th>Time</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Delivery Type</th>
+                <th>Products</th>
+                <th>Total Price (DA)</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<script src="orders.js"></script>
 </body>
 </html>

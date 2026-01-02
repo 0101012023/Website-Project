@@ -1,0 +1,26 @@
+[
+    {
+        "name": "iPhone 14",
+        "brand": "Apple",
+        "category": "phones",
+        "quantity": 5,
+        "price": 250000,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTV1_Ognkt1wEzbOSjD34C4wH21zy6ND_9NNw&s"
+    },
+    {
+        "name": "Galaxy S23",
+        "brand": "Samsung",
+        "category": "phones",
+        "quantity": 8,
+        "price": 200000,
+        "image": "https://link-to-image2.jpg"
+    },
+    {
+        "name": "Airpods Pro",
+        "brand": "Apple",
+        "category": "airpods",
+        "quantity": 10,
+        "price": 55000,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNDdx94125l2GcuL0QG37TBKfUX7IT54UZzw&s"
+    }
+]

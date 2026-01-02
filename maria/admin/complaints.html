@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Complaints | Aymen Phone</title>
+    <link rel="stylesheet" href="complaints.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-text">
+                <h1>AYMEN PHONE</h1>
+                <p>STORE & SERVICES</p>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Back Button -->
+    <div class="back-dashboard">
+        <a href="admin-dashboard.html">
+            <button>Back to Dashboard</button>
+        </a>
+    </div>
+
+    <!-- Complaints Container -->
+    <div class="admin-stocks-container">
+        <h2>Client Complaints</h2>
+
+        <!-- Complaints will appear here -->
+        <div id="complaintsContainer"></div>
+    </div>
+
+    <script>
+        // ================== Sample Complaints JSON ==================
+        const complaints = [
+            {
+                "name": "Ali",
+                "surname": "Benali",
+                "email": "aliben254@yahoo.com",
+                "time": "2026-01-01 12:30",
+                "message": "The phone I received is not working properly."
+            },
+            {
+                "name": "Sara",
+                "surname": "Amrani",
+                "email": "saraamrani2023@gmail.com",
+                "time": "2026-01-02 15:20",
+                "message": "My AirPods stopped charging."
+            },
+            {
+                "name": "Rachid",
+                "surname": "Khaldi",
+                "email": "rachidkh78@gmail.com",
+                "time": "2026-01-03 10:45",
+                "message": "Wrong product delivered."
+            }
+        ];
+
+        const container = document.getElementById("complaintsContainer");
+
+        // ================== Display Complaints ==================
+        complaints.forEach((c, index) => {
+            const card = document.createElement("div");
+            card.classList.add("complaint-card");
+
+            card.innerHTML = `
+                <h4>Complaint #${index + 1}</h4>
+                <p><strong>Client:</strong> ${c.name} ${c.surname}</p>
+                <p><strong>Email:</strong> ${c.email}</p>
+                <p><strong>Time:</strong> ${c.time}</p>
+                <p><strong>Message:</strong> ${c.message}</p>
+
+                <div class="reply-area">
+                    <textarea placeholder="Write your reply..."></textarea>
+                    <button>Send</button>
+                </div>
+            `;
+
+            // Send button action
+            const sendBtn = card.querySelector("button");
+            const textarea = card.querySelector("textarea");
+            sendBtn.addEventListener("click", () => {
+                if (textarea.value.trim() === "") {
+                    alert("Please write a reply before sending.");
+                } else {
+                    alert(`Message sent successfully to ${c.email}!`);
+                    textarea.value = "";
+                }
+            });
+
+            container.appendChild(card);
+        });
+    </script>
+</body>
+</html>
