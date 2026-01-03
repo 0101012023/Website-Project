@@ -9,7 +9,6 @@
 </head>
 <body>
 
-    <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo-text">
@@ -19,81 +18,103 @@
         </div>
     </nav>
 
-    <!-- Back Button -->
     <div class="back-dashboard">
         <a href="admin-dashboard.html">
             <button>Back to Dashboard</button>
         </a>
     </div>
 
-    <!-- Complaints Container -->
     <div class="admin-stocks-container">
         <h2>Client Complaints</h2>
 
-        <!-- Complaints will appear here -->
+        <div id="loadingStatus" style="text-align: center; margin-top: 20px; color: #C5A059;">
+            Fetching complaints from database...
+        </div>
+
         <div id="complaintsContainer"></div>
     </div>
 
     <script>
-        // ================== Sample Complaints JSON ==================
-        const complaints = [
-            {
-                "name": "Ali",
-                "surname": "Benali",
-                "email": "aliben254@yahoo.com",
-                "time": "2026-01-01 12:30",
-                "message": "The phone I received is not working properly."
-            },
-            {
-                "name": "Sara",
-                "surname": "Amrani",
-                "email": "saraamrani2023@gmail.com",
-                "time": "2026-01-02 15:20",
-                "message": "My AirPods stopped charging."
-            },
-            {
-                "name": "Rachid",
-                "surname": "Khaldi",
-                "email": "rachidkh78@gmail.com",
-                "time": "2026-01-03 10:45",
-                "message": "Wrong product delivered."
-            }
-        ];
-
         const container = document.getElementById("complaintsContainer");
+        const loadingStatus = document.getElementById("loadingStatus");
+
+        // ================== Fetch Complaints from API ==================
+        async function loadComplaints() {
+            try {
+                // Adjust the path below to match your actual folder structure
+                const response = await fetch('api/contact/get_allcontact.php');
+                const result = await response.json();
+
+                if (result.success) {
+                    loadingStatus.style.display = "none";
+                    renderComplaints(result.data);
+                } else {
+                    loadingStatus.textContent = "Error: " + result.message;
+                    loadingStatus.style.color = "red";
+                }
+            } catch (error) {
+                console.error("Fetch error:", error);
+                loadingStatus.textContent = "Connection to API failed.";
+                loadingStatus.style.color = "red";
+            }
+        }
 
         // ================== Display Complaints ==================
-        complaints.forEach((c, index) => {
-            const card = document.createElement("div");
-            card.classList.add("complaint-card");
+        function renderComplaints(data) {
+            container.innerHTML = ""; // Clear container
 
-            card.innerHTML = `
-                <h4>Complaint #${index + 1}</h4>
-                <p><strong>Client:</strong> ${c.name} ${c.surname}</p>
-                <p><strong>Email:</strong> ${c.email}</p>
-                <p><strong>Time:</strong> ${c.time}</p>
-                <p><strong>Message:</strong> ${c.message}</p>
+            if (data.length === 0) {
+                container.innerHTML = "<p style='text-align:center;'>No complaints found in the database.</p>";
+                return;
+            }
 
-                <div class="reply-area">
-                    <textarea placeholder="Write your reply..."></textarea>
-                    <button>Send</button>
-                </div>
-            `;
+            data.forEach((c) => {
+                const card = document.createElement("div");
+                card.classList.add("complaint-card");
 
-            // Send button action
-            const sendBtn = card.querySelector("button");
-            const textarea = card.querySelector("textarea");
-            sendBtn.addEventListener("click", () => {
-                if (textarea.value.trim() === "") {
-                    alert("Please write a reply before sending.");
-                } else {
-                    alert(`Message sent successfully to ${c.email}!`);
-                    textarea.value = "";
-                }
+                // Mapping API fields: customer_name, customer_email, subject, message, status, created_at
+                card.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h4>${c.subject || 'General Inquiry'} #${c.id}</h4>
+                        <span style="font-size: 0.8rem; background: #C5A059; color: #000; padding: 2px 8px; border-radius: 4px; font-weight: bold;">
+                            ${c.status.toUpperCase()}
+                        </span>
+                    </div>
+                    <p><strong>Client:</strong> ${c.customer_name}</p>
+                    <p><strong>Email:</strong> ${c.customer_email}</p>
+                    <p><strong>Time:</strong> ${c.created_at}</p>
+                    <p><strong>Message:</strong> ${c.message}</p>
+
+                    <div class="reply-area">
+                        <textarea id="reply-text-${c.id}" placeholder="Write your reply...">${c.admin_reply || ''}</textarea>
+                        <button onclick="handleReply(${c.id}, '${c.customer_email}')">
+                            ${c.admin_reply ? 'Update Reply' : 'Send'}
+                        </button>
+                    </div>
+                `;
+
+                container.appendChild(card);
             });
+        }
 
-            container.appendChild(card);
-        });
+        // ================== Reply Action ==================
+        function handleReply(id, email) {
+            const textarea = document.getElementById(`reply-text-${id}`);
+            const replyContent = textarea.value.trim();
+
+            if (replyContent === "") {
+                alert("Please write a reply before sending.");
+                return;
+            }
+
+            // Here you would typically call another API to save the reply in the DB
+            // For now, we simulate the success as per your original logic
+            alert(`Reply saved and notification logic triggered for: ${email}`);
+            console.log(`Replying to ID ${id} with content: ${replyContent}`);
+        }
+
+        // Initialize the page
+        loadComplaints();
     </script>
 </body>
 </html>
