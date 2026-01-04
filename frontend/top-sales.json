@@ -1,0 +1,62 @@
+[
+  {
+    "id": "ts1",
+    "title": "iPhone 13 Pro Max",
+    "description": "Apple smartphone with A15 Bionic chip",
+    "price_num": 185000,
+    "brand": "Apple",
+    "category": "Phones",
+    "image": "https://compasia.com.ph/cdn/shop/files/iphone-13-pro-max-328530_600x.png?v=1764837539",
+    "specs": {
+     "RAM": "6 GB",
+      "Storage": "256 GB",
+      "Color": "Graphite",
+      "Battery": "4352 mAh"
+    }
+  },
+ 
+   {
+    "id": "ts2",
+    "title": "Samsung Galaxy S23 Ultra",
+    "description": "High-end Android phone with S-Pen",
+    "price_num": 175000,
+    "brand": "Samsung",
+    "category": "Phones",
+    "image": "https://cellucity.co.za/wp-content/uploads/2025/09/Samsung-Galaxy-S23-Ultra-in-Graphite-Grey.webp",
+    "specs": {
+      "RAM": "12 GB",
+      "Storage": "256 GB",
+      "Color": "Black",
+      "Battery": "5000 mAh"
+    }
+  },
+  
+  {
+    "id": "ts3",
+    "title": "Apple AirPods Pro (2nd Gen)",
+    "description": "Noise cancelling wireless earbuds",
+    "price_num": 42000,
+    "brand": "Apple",
+    "category": "Airpods",
+    "image": "https://incredideals.co/cdn/shop/files/MTJV3.webp?v=1733468352",
+    "specs": {
+      "Connectivity": "Bluetooth",
+      "Noise Canceling": "Yes",
+      "Battery": "30 hours"
+    }
+  },
+  {
+    "id": "ts4",
+    "title": "Baseus Fast Charger 20W",
+    "description": "USB-C fast charging adapter",
+    "price_num": 4500,
+    "brand": "Baseus",
+    "category": "Accessories",
+    "image": "https://www.mytrendyphone.eu/images/Baseus-Super-Si-Quick-Lightning-Charger-with-Power-Delivery-20W-Black-6953156230057-06082021-01-p.webp",
+    "specs": {
+      "Power": "20W",
+      "Port": "USB-C",
+      "Compatibility": "iPhone / Android"
+    }
+  }
+]

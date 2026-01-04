@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aymen Phone | Shop</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        .all-products-toggle {
+            background: #141414;
+            color: #C5A059;
+            border-right: 1px solid rgba(197, 160, 89, 0.5);
+            padding: 0 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            border: none;
+        }
+        .all-products-toggle:hover { background: #C5A059; color: #141414; }
+        .all-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 20px; }
+        @media (max-width: 1100px) { .all-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-text"><h1>AYMEN PHONE</h1><p>STORE & SERVICES</p></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html" class="active">Shop</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <div class="cart-icon">
+                    <a href="cart.html" class="cart-link">🛒</a>
+                    <span class="badge" id="cartBadge">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="shop-layout">
+        <div class="category-sidebar">
+            <div>
+                <div class="sidebar-title">Categories</div>
+                <div class="sidebar-item cat" data-cat="Phones">Phones</div>
+                <div class="sidebar-item cat" data-cat="Airpods">Airpods</div>
+                <div class="sidebar-item cat" data-cat="Tablets">Tablets</div>
+                <div class="sidebar-item cat" data-cat="Accessories">Accessories</div>
+                <div class="sidebar-item cat" data-cat="">All</div>
+            </div>
+            <div>
+                <div class="sidebar-title">Price</div>
+                <div class="sidebar-item price" data-min="0" data-max="10000">Under 10000 DA</div>
+                <div class="sidebar-item price" data-min="10000" data-max="50000">10000 - 50000 DA</div>
+                <div class="sidebar-item price" data-min="50000" data-max="100000">50000 - 100000 DA</div>
+                <div class="sidebar-item price" data-min="100000" data-max="300000">Above 100000 DA</div>
+                <div class="sidebar-item price" data-min="" data-max="">Any Price</div>
+            </div>
+        </div>
+
+        <div class="shop-content">
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <button id="allProductsBtn" class="all-products-toggle">All Products</button>
+                    <button id="backToFeaturedBtn" class="all-products-toggle" style="display: none; background: #C5A059; color: #141414;">← Back</button>
+                    
+                    <input type="text" id="brandSearch" placeholder="Search brand..." autocomplete="off" />
+                    <button id="searchBtn">Search</button>
+                </div>
+            </div>
+
+            <div id="product-display" class="product-display">
+                <p id="default-message">Select a category or search a brand.</p>
+            </div>
+
+            <div id="all-products-section" class="section" style="display: none;">
+                <h3 class="section-title">All Catalog</h3>
+                <div class="section-grid all-grid" id="all-products-display"></div>
+            </div>
+
+            <div id="default-sections">
+                <div class="section">
+                    <h3 class="section-title">Top Sales !</h3>
+                    <div class="section-grid" id="top-sales-display"></div>
+                </div>
+                <div class="section">
+                    <h3 class="section-title">What's New ?</h3>
+                    <div class="section-grid" id="whats-new-display"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="productModal">
+        <div class="modal-content">
+            <span id="closeModal">&times;</span>
+            <img id="modalImage" src="" />
+            <h2 id="modalTitle"></h2>
+            <p id="modalDescription"></p>
+            <h3 id="modalPrice"></h3>
+            <div id="modalExtra" class="modal-extra"></div>
+            <button id="addToCartBtn">Add to Cart</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

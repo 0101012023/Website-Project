@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aymen Phone | Panier</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo-text">
+        <h1>AYMEN PHONE</h1>
+        <p>STORE & SERVICES</p>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <div class="nav-icons">
+        <div class="cart-icon">
+          <a class="cart-link" href="cart.html">
+            🛒 <span class="badge" id="cartBadge">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div style="max-width:1100px;margin:40px auto;padding:0 5%;position:relative;z-index:2;">
+  <h2 class="section-title">Panier</h2>
+</div>
+
+    <!-- JS populates the products here -->
+    <div id="cartItems"></div>
+
+    <div style="margin-top:18px;border:1px solid #C5A059;border-radius:10px;padding:16px;background:#141414;">
+  <h3 style="color:#C5A059;">Total: <span id="cartTotal">0 DA</span></h3>
+</div>
+
+
+      <!-- checkout -->
+       <a href="checkout.html" class="btn-gold" style="margin-top:10px;display:inline-block;">Checkout</a>
+    </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="ss">
+        <div class="ss-container">
+
+            <!-- Who we are -->
+            <div class="ss-box">
+                <h3>WHO ARE WE ?</h3>
+                <p>
+                    <strong>Aymen Phone</strong><br>
+                    Premium smartphones, accessories, and expert repair services.
+                </p>
+            </div>
+
+            <!-- Pages -->
+            <div class="ss-box">
+                <h3>PAGES</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="services.html">Service</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Social -->
+            <div class="ss-box">
+                <h3>FOLLOW US</h3>
+                <ul class="social-icons">
+
+                    <li>
+                        <a href="https://www.instagram.com/aymen_phone21?igsh=em02cng0MGhlM2Fq">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="https://www.tiktok.com/@aymen.smartphone?_r=1&_t=ZS-92cRNAWFs70">
+                            <i class="fab fa-tiktok"></i> Tiktok
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="https://www.google.com/maps/place/90 Les allees du 20 aout 1955, skikda" target="_blank">
+                            <i class="fas fa-map-marker-alt"></i> Location
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#"
+                           onclick="navigator.clipboard.writeText('+2130776486355'); alert('Numéro copié');">
+                            <i class="fas fa-phone"></i> +213 0776486355
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Bottom -->
+        <div class="ss-bottom">
+            <p>© 2025 Aymen Phone. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+  <script src="script.js"></script>
+  
+
+</body>
+</html>

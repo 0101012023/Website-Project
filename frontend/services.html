@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aymen Phone | Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" 
+          integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <!-- Bubbles background -->
+    <div class="bubbles">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <br>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-text">
+                <h1>AYMEN PHONE</h1>
+                <p>STORE & SERVICES</p>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+             <div class="nav-icons">
+    <div class="cart-icon">
+        <a href="cart.html" class="cart-link" >🛒</a>
+        <span class="badge">0</span>
+    </div>
+</div>
+        </div>
+    </nav>
+
+    <!-- Services Section -->
+    <section class="services">
+        <h2>Our Services</h2>
+        <p class="subtitle">Professional services for your devices</p>
+
+        <div class="services-grid">
+
+            <div class="service-card">
+                <i class="fas fa-tools"></i>
+                <h3>Repair Services</h3>
+                <p>Screen, battery & software repair</p>
+                <button onclick="openRepairModal()">Learn More</button>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-truck"></i>
+                <h3>Delivery Service</h3>
+                <p>Fast & secure delivery</p>
+                <button onclick="openDeliveryModal()">Learn More</button>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Warranty</h3>
+                <p>Warranty on devices & accessories</p>
+                <button onclick="openWarrantyModal()">Learn More</button>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-sync-alt"></i>
+                <h3>Trade-In</h3>
+                <p>Exchange your old phone</p>
+                <button onclick="openTradeModal()">Learn More</button>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-cog"></i>
+                <h3>Setup</h3>
+                <p>Phone setup & data transfer</p>
+                <button onclick="openSetupModal()">Learn More</button>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-headset"></i>
+                <h3>Support</h3>
+                <p>Customer technical support</p>
+                <button onclick="openSupportModal()">Learn More</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Modals -->
+    <!-- Repair Modal -->
+    <div class="modal" id="repairModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeRepairModal()">&times;</span>
+            <h2>Repair Service</h2>
+            <p class="subtitle"><strong>Devices sold in our store</strong></p>
+            <ul>
+                <li>Phones & tablets repair</li>
+                <li>Screen & battery replacement</li>
+                <li>Software issues</li>
+            </ul>
+            <p class="note">🛠 Fast & reliable repair</p>
+        </div>
+    </div>
+
+    <!-- Delivery Modal -->
+    <div class="modal" id="deliveryModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDeliveryModal()">&times;</span>
+            <h2>Delivery Fees</h2>
+            <p class="subtitle"><strong>Delivery via ZR Express</strong> <br><strong>Pay on Delivery</strong></p>
+            <table class="delivery-table">
+                <thead>
+                    <tr>
+                        <th>state</th>
+                        <th>Express (Residence)</th>
+                        <th>Express (Stop Desk)</th>
+                    </tr>
+                </thead>
+                  <tbody>
+    <tr><td>Adrar</td><td>1400 DA</td><td>1000 DA</td></tr>
+    <tr><td>Chlef</td><td>850 DA</td><td>500 DA</td></tr>
+    <tr><td>Laghouat</td><td>950 DA</td><td>500 DA</td></tr>
+    <tr><td>Oum El Bouaghi</td><td>850 DA</td><td>500 DA</td></tr>
+    <tr><td>Batna</td><td>850 DA</td><td>500 DA</td></tr>
+    <tr><td>Bejaia</td><td>800 DA</td><td>350 DA</td></tr>
+    <tr><td>Biskra</td><td>950 DA</td><td>600 DA</td></tr>
+    <tr><td>Béchar</td><td>1000 DA</td><td>650 DA</td></tr>
+    <tr><td>Blida</td><td>850 DA</td><td>600 DA</td></tr>
+    <tr><td>Bouira</td><td>850 DA</td><td>500 DA</td></tr>
+    <tr><td>Tamanrasset</td><td>1700 DA</td><td>1200 DA</td></tr>
+    <tr><td>Tébessa</td><td>900 DA</td><td>500 DA</td></tr>
+    <tr><td>Tlemcen</td><td>750 DA</td><td>500 DA</td></tr>
+    <tr><td>Tiaret</td><td>800 DA</td><td>500 DA</td></tr>
+    <tr><td>Tizi Ouzou</td><td>850 DA</td><td>500 DA</td></tr>
+    <tr><td>Alger</td><td>650 DA</td><td>400 DA</td></tr>
+    <tr><td>Djelfa</td><td>950 DA</td><td>600 DA</td></tr>
+    <tr><td>Jijel</td><td>850 DA</td><td>500 DA</td></tr>
+    <tr><td>Sétif</td><td>850 DA</td><td>500 DA</td></tr>
+    <tr><td>Saïda</td><td>750 DA</td><td>600 DA</td></tr>
+    <tr><td>Skikda</td><td>750 DA</td><td>500 DA</td></tr>
+    <tr><td>Sidi Bel Abbès</td><td>750 DA</td><td>500 DA</td></tr>
+    <tr><td>Annaba</td><td>850 DA</td><td>500 DA</td></tr>
+    <tr><td>Guelma</td><td>850 DA</td><td>500 DA</td></tr>
+    <tr><td>Constantine</td><td>850 DA</td><td>500 DA</td></tr>
+    <tr><td>Médéa</td><td>850 DA</td><td>600 DA</td></tr>
+    <tr><td>Mostaganem</td><td>850 DA</td><td>600 DA</td></tr>
+    <tr><td>M’Sila</td><td>900 DA</td><td>600 DA</td></tr>
+    <tr><td>Mascara</td><td>750 DA</td><td>500 DA</td></tr>
+    <tr><td>Ouargla</td><td>1000 DA</td><td>650 DA</td></tr>
+    <tr><td>Oran</td><td>750 DA</td><td>500 DA</td></tr>
+    <tr><td>El Bayadh</td><td>1200 DA</td><td>700 DA</td></tr>
+    <tr><td>Illizi</td><td>1700 DA</td><td>1000 DA</td></tr>
+    <tr><td>Bordj Bou Arréridj</td><td>850 DA</td><td>500 DA</td></tr>
+    <tr><td>Boumerdès</td><td>800 DA</td><td>500 DA</td></tr>
+    <tr><td>El Tarf</td><td>900 DA</td><td>500 DA</td></tr>
+    <tr><td>Tindouf</td><td>1700 DA</td><td>1000 DA</td></tr>
+    <tr><td>Tissemsilt</td><td>850 DA</td><td>500 DA</td></tr>
+    <tr><td>El Oued</td><td>1000 DA</td><td>650 DA</td></tr>
+    <tr><td>Khenchela</td><td>850 DA</td><td>500 DA</td></tr>
+    <tr><td>Souk Ahras</td><td>850 DA</td><td>500 DA</td></tr>
+    <tr><td>Tipaza</td><td>850 DA</td><td>500 DA</td></tr>
+    <tr><td>Mila</td><td>850 DA</td><td>500 DA</td></tr>
+    <tr><td>Aïn Defla</td><td>800 DA</td><td>500 DA</td></tr>
+    <tr><td>Naâma</td><td>1000 DA</td><td>600 DA</td></tr>
+    <tr><td>Aïn Témouchent</td><td>500 DA</td><td>350 DA</td></tr>
+    <tr><td>Ghardaïa</td><td>950 DA</td><td>600 DA</td></tr>
+    <tr><td>Relizane</td><td>800 DA</td><td>500 DA</td></tr>
+    <tr><td>El M'Ghair</td><td>1000 DA</td><td>850 DA</td></tr>
+    <tr><td>El Meniaa</td><td>1000 DA</td><td>850 DA</td></tr>
+    <tr><td>Ouled Djellal</td><td>1000 DA</td><td>600 DA</td></tr>
+    <tr><td>Béni Abbès</td><td>850 DA</td><td>600 DA</td></tr>
+    <tr><td>Timimoun</td><td>1400 DA</td><td>1000 DA</td></tr>
+    <tr><td>Touggourt</td><td>1000 DA</td><td>650 DA</td></tr>
+    <tr><td>Djanet</td><td>1700 DA</td><td>1000 DA</td></tr>
+    <tr><td>In Salah</td><td>1700 DA</td><td>1000 DA</td></tr>
+    <tr><td>In Guezzam</td><td>1700 DA</td><td>1000 DA</td></tr>
+    <tr><td>Bordj Badji Mokhtar</td><td>850 DA</td><td>600 DA</td></tr>
+</tbody>
+
+                                         
+
+
+            </table>
+            <p class="note">🚚 Fast delivery according to your province</p>
+        </div>
+    </div>
+
+    <!-- Warranty Modal -->
+    <div class="modal" id="warrantyModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeWarrantyModal()">&times;</span>
+            <h2>Warranty</h2>
+            <p class="subtitle"><strong>Store warranty</strong></p>
+            <ul>
+                <li>Phones & tablets warranty</li>
+                <li>Accessories warranty</li>
+                <li>After-sales service</li>
+            </ul>
+            <p class="note">✅ Warranty depends on product</p>
+        </div>
+    </div>
+
+    <!-- Trade Modal -->
+    <div class="modal" id="tradeModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeTradeModal()">&times;</span>
+            <h2>Trade-In</h2>
+            <ul>
+                <li>Exchange old devices</li>
+                <li>Discount on new purchase</li>
+                <li>Phones & tablets accepted</li>
+            </ul>
+            <p class="note">🔄 Upgrade easily</p>
+        </div>
+    </div>
+
+    <!-- Setup Modal -->
+    <div class="modal" id="setupModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSetupModal()">&times;</span>
+            <h2>Device Setup</h2>
+            <ul>
+                <li>Account configuration</li>
+                <li>Data transfer</li>
+                <li>App installation</li>
+            </ul>
+            <p class="note">⚙ Ready to use</p>
+        </div>
+    </div>
+
+    <!-- Support Modal -->
+    <div class="modal" id="supportModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSupportModal()">&times;</span>
+            <h2>Customer Support</h2>
+            <ul>
+                <li>Technical help</li>
+                <li>Usage assistance</li>
+                <li>After-sales support</li>
+            </ul>
+            <p class="note">🎧 Always here</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="ss">
+        <div class="ss-container">
+
+            <!-- Who we are -->
+            <div class="ss-box">
+                <h3>WHO ARE WE ?</h3>
+                <p>
+                    <strong>Aymen Phone</strong> Premium smartphones, accessories, and expert repair services.
+                </p>
+            </div>
+
+            <!-- Pages -->
+            <div class="ss-box">
+                <h3>PAGES</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="services.html">Service</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Social -->
+            <div class="ss-box">
+                <h3>FOLLOW US</h3>
+                <ul class="social-icons">
+                    <li><a href="https://www.instagram.com/aymen_phone21?igsh=em02cng0MGhlM2Fq"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="https://www.tiktok.com/@aymen.smartphone?_r=1&_t=ZS-92cRNAWFs70"><i class="fab fa-tiktok"></i> Tiktok</a></li>
+                    <li><a href="https://www.google.com/maps/place/90 Les allees du 20 aout 1955, skikda" target="_blank"><i class="fas fa-map-marker-alt"></i> Location</a></li>
+                    <li><a href="#" onclick="navigator.clipboard.writeText('+2130776486355'); alert('numero copie');"><i class="fas fa-phone"></i> +213 0776486355</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Bottom -->
+        <div class="ss-bottom">
+            <p>© 2025 Aymen Phone. All Rights Reserved.</p>
+        </div>
+    </footer>
+      <!-- script -->
+    <script src="script.js"></script>
+</body>
+</html>

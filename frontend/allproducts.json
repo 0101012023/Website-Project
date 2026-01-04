@@ -1,0 +1,287 @@
+[
+  {
+    "id": "ap1",
+    "title": "iPhone 15 Pro",
+    "description": "Apple flagship with titanium design",
+    "price_num": 195000,
+    "brand": "Apple",
+    "category": "Phones",
+    "image": "https://fonez.ie/cdn/shop/files/iPhone15ProBlueTitanium_1024x.webp?v=1741000684",
+    "specs": {
+      "RAM": "8 GB",
+      "Storage": "256 GB",
+      "Color": "Natural Titanium",
+      "Battery": "3274 mAh"
+    }
+  },
+  {
+    "id": "ap2",
+    "title": "Redmi Note 13 Pro",
+    "description": "Affordable phone with AMOLED display",
+    "price_num": 58000,
+    "brand": "Redmi",
+    "category": "Phones",
+    "image": "https://i0.wp.com/mstore.ie/wp-content/uploads/2024/02/Redmi-Note-13-Pro-5G-Purple.webp?fit=1600%2C1600&ssl=1",
+    "specs": {
+      "RAM": "8 GB",
+      "Storage": "256 GB",
+      "Display": "AMOLED",
+      "Battery": "5100 mAh"
+    }
+  },
+  {
+    "id": "ap3",
+    "title": "Huawei MatePad 11",
+    "description": "Powerful tablet for work and study",
+    "price_num": 82000,
+    "brand": "Huawei",
+    "category": "Tablets",
+    "image": "https://pimcdn.sharafdg.com/cdn-cgi/image/width=600,height=600,fit=pad,format=webp,quality=70/images/S200775083_1?1716883339",
+    "specs": {
+      "Screen": "11 inches",
+      "RAM": "6 GB",
+      "Storage": "128 GB",
+      "Battery": "7250 mAh"
+    }
+  },
+  {
+    "id": "ap4",
+    "title": "Anker Power Bank 20000mAh",
+    "description": "High capacity fast charging power bank",
+    "price_num": 7800,
+    "brand": "Anker",
+    "category": "Accessories",
+    "image": "https://dz.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/90/5145/1.jpg?5631",
+    "specs": {
+      "Capacity": "20000 mAh",
+      "Ports": "USB / USB-C",
+      "Fast Charge": "Yes"
+    }
+  },
+  {
+    "id": "ap5",
+    "title": "Samsung Galaxy S24 Ultra",
+    "description": "The ultimate AI-powered flagship",
+    "price_num": 215000,
+    "brand": "Samsung",
+    "category": "Phones",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJRtISxuURSp7ognfp76nQn9-WUatrTANVRw&s",
+    "specs": {
+      "RAM": "12 GB",
+      "Storage": "512 GB",
+      "Camera": "200 MP",
+      "Stylus": "S-Pen Included"
+    }
+  },
+  {
+    "id": "ap6",
+    "title": "AirPods Pro 2nd Gen",
+    "description": "Active Noise Cancellation and transparency",
+    "price_num": 42000,
+    "brand": "Apple",
+    "category": "Airpods",
+    "image": "https://incredideals.co/cdn/shop/files/MTJV3.webp?v=1733468352",
+    "specs": {
+      "Chip": "H2 Chip",
+      "Battery": "6 hours",
+      "Case": "MagSafe USB-C"
+    }
+  },
+  {
+    "id": "ap7",
+    "title": "iPad Air M2",
+    "description": "Light, thin, and incredibly powerful",
+    "price_num": 145000,
+    "brand": "Apple",
+    "category": "Tablets",
+    "image": "https://www.wonderprice.co.uk/image/cache/wp/gp/Apple/apple-ipad-air-2024-space-grey-1-800x800.webp",
+    "specs": {
+      "Processor": "Apple M2",
+      "Screen": "11 inch Liquid Retina",
+      "Storage": "128 GB"
+    }
+  },
+  {
+    "id": "ap8",
+    "title": "Logitech MX Master 3S",
+    "description": "Precision wireless mouse for creators",
+    "price_num": 18500,
+    "brand": "Logitech",
+    "category": "Accessories",
+    "image": "https://www.istudio.store/cdn/shop/files/logitech_mx_master_3s_-_graphite_097855175359.webp?v=1716795724&width=823",
+    "specs": {
+      "DPI": "8000",
+      "Connectivity": "Logi Bolt / BT",
+      "Silent": "Yes"
+    }
+  },
+  {
+    "id": "ap9",
+    "title": "Realme Buds Air 5",
+    "description": "Deep bass and clear audio quality",
+    "price_num": 8500,
+    "brand": "Realme",
+    "category": "Airpods",
+    "image": "https://maajkart.com/wp-content/uploads/Realme-Buds-Air-5-2.webp",
+    "specs": {
+      "Driver": "12.4mm",
+      "Noise Control": "Active ANC",
+      "Battery": "38 hours total"
+    }
+  },
+  {
+    "id": "ap10",
+    "title": "Samsung Galaxy Tab S9",
+    "description": "Water-resistant premium Android tablet",
+    "price_num": 125000,
+    "brand": "Samsung",
+    "category": "Tablets",
+    "image": "https://iservicejo.com/wp-content/uploads/2024/08/SM-X616BZAAMEA_000_0002_33fb860b-f791-4822-bb00-19cb9166d23a_1920x.png.webp",
+    "specs": {
+      "Display": "Dynamic AMOLED 2X",
+      "Protection": "IP68",
+      "Refresh": "120 Hz"
+    }
+  },
+  {
+    "id": "ap11",
+    "title": "Google Pixel 8 Pro",
+    "description": "Best-in-class camera with Pure Android",
+    "price_num": 165000,
+    "brand": "Google",
+    "category": "Phones",
+    "image": "https://www.hemfrance.com/38137-thickbox_default/google-pixel-8-pro-67-128-gb-12-gb-ram-black.jpg",
+    "specs": {
+      "CPU": "Tensor G3",
+      "RAM": "12 GB",
+      "Camera": "50 MP Triple"
+    }
+  },
+  {
+    "id": "ap12",
+    "title": "MagSafe Charger",
+    "description": "Fast wireless charging for iPhone",
+    "price_num": 9500,
+    "brand": "Apple",
+    "category": "Accessories",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTW1yYLNOuzCW80DeL_wB2au6TVWsQGwK8EdQ&s",
+    "specs": {
+      "Power": "15W",
+      "Connector": "USB-C",
+      "Magnet": "Yes"
+    }
+  },
+  {
+    "id": "ap13",
+    "title": "Galaxy Buds2 Pro",
+    "description": "Hi-Fi sound for Samsung users",
+    "price_num": 28000,
+    "brand": "Samsung",
+    "category": "Airpods",
+    "image": "https://fonez.ie/cdn/shop/files/SamsungGalaxyBuds2ProGraphite_1024x.webp?v=1724407341",
+    "specs": {
+      "Audio": "24-bit Hi-Fi",
+      "360 Audio": "Supported",
+      "Water": "IPX7"
+    }
+  },
+  {
+    "id": "ap14",
+    "title": "OnePlus 12",
+    "description": "Smooth performance and 100W charging",
+    "price_num": 158000,
+    "brand": "OnePlus",
+    "category": "Phones",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE-2PJANCfFKF60NGs4OaYnaxnWJjNQ30W2Q&s",
+    "specs": {
+      "RAM": "16 GB",
+      "Charging": "100W Wired",
+      "CPU": "Snapdragon 8 Gen 3"
+    }
+  },
+  {
+    "id": "ap15",
+    "title": "SanDisk 128GB MicroSD",
+    "description": "Expand your storage for photos and apps",
+    "price_num": 3500,
+    "brand": "SanDisk",
+    "category": "Accessories",
+    "image": "https://shop.sandisk.com/content/dam/store/en-us/assets/products/memory-cards/microsd-express-memory-card/gallery/microsd-express-memory-card-128gb-front.png.thumb.1280.1280.png",
+    "specs": {
+      "Class": "UHS-I / U3",
+      "Speed": "140 MB/s",
+      "Adapter": "Included"
+    }
+  },
+  {
+    "id": "ap16",
+    "title": "Xiaomi Pad 6",
+    "description": "Great value tablet with 144Hz screen",
+    "price_num": 68000,
+    "brand": "Xiaomi",
+    "category": "Tablets",
+    "image": "https://static01.galaxus.com/productimages/4/0/4/9/5/3/1/0/6/3/4/9/1/7/6/1/2/2/5/8581fd75-b76c-4268-9f26-88d6ca7973c7.jpg_720.jpeg",
+    "specs": {
+      "Screen": "144Hz WQHD+",
+      "RAM": "8 GB",
+      "CPU": "Snapdragon 870"
+    }
+  },
+  {
+    "id": "ap17",
+    "title": "Sony WF-1000XM5",
+    "description": "The best noise cancellation in earbuds",
+    "price_num": 49000,
+    "brand": "Sony",
+    "category": "Airpods",
+    "image": "https://sony.scene7.com/is/image/sonyglobalsolutions/02_M?$productIntroPlatemobile$&fmt=png-alpha",
+    "specs": {
+      "ANC": "Integrated Processor V2",
+      "Battery": "8 hours (buds)",
+      "Multipoint": "Yes"
+    }
+  },
+  {
+    "id": "ap18",
+    "title": "iPhone 13",
+    "description": "Great reliability and camera for the price",
+    "price_num": 105000,
+    "brand": "Apple",
+    "category": "Phones",
+    "image": "https://comparisontabl.es/wp-content/uploads/iphone-13.webp",
+    "specs": {
+      "Storage": "128 GB",
+      "Screen": "6.1 inch OLED",
+      "Chip": "A15 Bionic"
+    }
+  },
+  {
+    "id": "ap19",
+    "title": "USB-C to Lightning Cable",
+    "description": "Durable 2-meter braided cable",
+    "price_num": 2500,
+    "brand": "Generic",
+    "category": "Accessories",
+    "image": "https://www.mytrendyphone.eu/images/Saii-Digibuddy-Fast-USB-C-Lightning-Cable-iPhone-iPad-iPod-1m-21122023-01.webp",
+    "specs": {
+      "Length": "2 Meters",
+      "Material": "Braided Nylon",
+      "Sync": "High Speed"
+    }
+  },
+  {
+    "id": "ap20",
+    "title": "Lenovo Tab P11",
+    "description": "Ideal for families and entertainment",
+    "price_num": 48000,
+    "brand": "Lenovo",
+    "category": "Tablets",
+    "image": "https://pimcdn.sharafdg.com/cdn-cgi/image/width=600,height=600,fit=pad,format=webp,quality=70/images/S200725625_1?1703676960",
+    "specs": {
+      "Speakers": "Quad speakers",
+      "Display": "2K Resolution",
+      "Storage": "64 GB"
+    }
+    }
+  
+]
