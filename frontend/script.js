@@ -1,5 +1,8 @@
 /* =========================================================
-  main.js  (ONE FILE FOR ALL PAGES)
+  main.js  (ONE FILE FOR ALL PAGES)  ✅ FIXED
+  - jQuery safe
+  - JSON can be Array OR {products:[...]} OR {items:[...]}
+  - Better error handling + console logs
 ========================================================= */
 
 /* -------------------------
@@ -18,11 +21,12 @@ function updateCartBadge() {
   if (!has("#cartBadge")) return;
   const cart = getCart();
   const count = Object.values(cart).reduce((s, it) => s + (it.qty || 0), 0);
-  document.getElementById("cartBadge").textContent = count;
+  $("#cartBadge").text(count);
 }
 
 /* =========================================================
    1) SHOP PAGE
+   (requires: #top-sales-display, #whats-new-display)
 ========================================================= */
 function initShop() {
   if (!has("#top-sales-display") && !has("#whats-new-display")) return;
@@ -38,16 +42,15 @@ function initShop() {
   let CURRENT_ID = null;
 
   function passFilters(p) {
-    if (FILTERS.category && p.category !== FILTERS.category) return false;
+    if (FILTERS.category && String(p.category).toLowerCase() !== String(FILTERS.category).toLowerCase()) return false;
     if (FILTERS.minPrice != null && num(p.price_num) < FILTERS.minPrice) return false;
     if (FILTERS.maxPrice != null && num(p.price_num) > FILTERS.maxPrice) return false;
 
     if (FILTERS.query) {
       const q = FILTERS.query.toLowerCase();
-      if (
-        !(p.brand || "").toLowerCase().includes(q) &&
-        !(p.title || "").toLowerCase().includes(q)
-      ) return false;
+      const brand = (p.brand || "").toLowerCase();
+      const title = (p.title || "").toLowerCase();
+      if (!brand.includes(q) && !title.includes(q)) return false;
     }
     return true;
   }
@@ -55,201 +58,501 @@ function initShop() {
   function renderCard(p) {
     return `
       <div class="section-card product-card" data-id="${p.id}">
-        <img src="${p.image}" alt="${p.title}">
-        <h4>${p.title}</h4>
-        <p>${p.description || ""}</p>
-        <h3>${moneyDA(p.price_num)}</h3>
+        <img src="${p.image || ""}" alt="${p.title || ""}">
+        <h4 style="font-size:12px;margin:6px 0;">${p.title || ""}</h4>
+        <p style="font-size:11px;color:#bbb;min-height:28px;">${p.description || ""}</p>
+        <h3 style="margin-top:6px;">${moneyDA(p.price_num)}</h3>
       </div>
     `;
   }
 
   function renderAll() {
     const top = TOP_PRODUCTS.filter(passFilters);
-    const nw  = NEW_PRODUCTS.filter(passFilters);
+    const nw = NEW_PRODUCTS.filter(passFilters);
 
-    document.getElementById("top-sales-display").innerHTML = top.map(renderCard).join("");
-    document.getElementById("whats-new-display").innerHTML = nw.map(renderCard).join("");
+    if (has("#top-sales-display")) $("#top-sales-display").html(top.map(renderCard).join(""));
+    if (has("#whats-new-display")) $("#whats-new-display").html(nw.map(renderCard).join(""));
+
+    const shown = top.length + nw.length;
+    if (has("#product-display") && has("#default-message")) {
+      if (!FILTERS.category && FILTERS.maxPrice == null && !FILTERS.query) {
+        $("#default-message").text("Select a category or search a brand.");
+        $("#product-display").show();
+      } else if (shown === 0) {
+        $("#default-message").text("No products found.");
+        $("#product-display").show();
+      } else {
+        $("#product-display").hide();
+      }
+    }
   }
 
   function addToCart(product) {
     const cart = getCart();
-    if (!cart[product.id]) cart[product.id] = { ...product, qty: 1 };
-    else cart[product.id].qty++;
+    const id = product.id;
+    if (!cart[id]) cart[id] = { ...product, qty: 1 };
+    else cart[id].qty += 1;
     setCart(cart);
     updateCartBadge();
   }
 
+  function specsHtml(specs) {
+    if (!specs || typeof specs !== "object") return "";
+    const rows = Object.entries(specs).map(([k, v]) => `
+      <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(197,160,89,.25);padding:6px 0;">
+        <span style="color:#C5A059;font-weight:700;">${k}</span>
+        <span>${v}</span>
+      </div>
+    `).join("");
+    return `<div style="text-align:left;margin-top:12px;">${rows}</div>`;
+  }
+
   function openModal(p) {
-    const modal = document.getElementById("productModal");
-    if (!modal) return;
+    if (!has("#productModal")) return;
 
     CURRENT_ID = p.id;
-    document.getElementById("modalImage").src = p.image;
-    document.getElementById("modalTitle").textContent = p.title;
-    document.getElementById("modalDescription").textContent = p.description || "";
-    document.getElementById("modalPrice").textContent = moneyDA(p.price_num);
-    modal.style.display = "flex";
+    $("#modalImage").attr("src", p.image || "");
+    $("#modalTitle").text(p.title || "");
+    $("#modalDescription").text(p.description || "");
+    $("#modalPrice").text(moneyDA(p.price_num));
+
+    if (has("#modalExtra")) {
+      const extra = `
+        <p style="margin-top:10px;">
+          <strong style="color:#C5A059;">Brand:</strong> ${p.brand || "-"} |
+          <strong style="color:#C5A059;">Category:</strong> ${p.category || "-"}
+        </p>
+        ${specsHtml(p.specs)}
+      `;
+      $("#modalExtra").html(extra);
+    }
+
+    $("#productModal").css("display", "flex");
   }
 
   function closeModal() {
-    const modal = document.getElementById("productModal");
-    if (modal) modal.style.display = "none";
+    if (!has("#productModal")) return;
+    $("#productModal").hide();
     CURRENT_ID = null;
   }
 
-  document.addEventListener("click", function (e) {
-    if (e.target.id === "closeModal") closeModal();
+  $(document).on("click", "#closeModal", closeModal);
+  $(document).on("click", "#productModal", function (e) {
     if (e.target.id === "productModal") closeModal();
-
-    const card = e.target.closest(".product-card");
-    if (card) {
-      const p = ALL_PRODUCTS[card.dataset.id];
-      if (p) openModal(p);
-    }
-
-    if (e.target.id === "addToCartBtn" && CURRENT_ID) {
-      addToCart(ALL_PRODUCTS[CURRENT_ID]);
-      closeModal();
-    }
   });
 
+  $(document).on("click", "#addToCartBtn", function () {
+    if (!CURRENT_ID) return;
+    const p = ALL_PRODUCTS[CURRENT_ID];
+    if (!p) return;
+    addToCart(p);
+    closeModal();
+  });
+
+  $(document).on("click", ".product-card", function () {
+    const id = $(this).data("id");
+    const p = ALL_PRODUCTS[id];
+    if (p) openModal(p);
+  });
+
+  // ✅ Load JSON (Array OR object with products/items)
   async function loadJson(url) {
-    const res = await fetch(url);
+    const res = await fetch(url, { cache: "no-store" });
+
+    if (!res.ok) {
+      const txt = await res.text();
+      console.error("JSON LOAD FAILED:", url, "status:", res.status, txt.slice(0, 200));
+      throw new Error(`Failed to load ${url} (status ${res.status})`);
+    }
+
     const data = await res.json();
-    return data.map((p, i) => {
+    const arr = Array.isArray(data) ? data : (data.products || data.items || data.data || []);
+
+    if (!Array.isArray(arr)) {
+      console.error("Bad JSON structure:", data);
+      throw new Error("JSON must be an array OR contain products/items/data array");
+    }
+
+    return arr.map((p, i) => {
       const id = p.id || `${url}_${i}`;
-      const obj = { ...p, id, price_num: num(p.price_num ?? p.priceNum) };
+      const obj = { ...p, id };
+
+      // normalize price
+      if (obj.price_num == null && obj.priceNum != null) obj.price_num = obj.priceNum;
+      if (obj.price_num == null && obj.price != null) obj.price_num = obj.price;
+      obj.price_num = num(obj.price_num);
+
       ALL_PRODUCTS[id] = obj;
       return obj;
     });
   }
 
-  (async function () {
-    updateCartBadge();
-    TOP_PRODUCTS = await loadJson(JSON_TOP);
-    NEW_PRODUCTS = await loadJson(JSON_NEW);
+  // Filters events
+  $(document).on("click", ".sidebar-item.cat", function () {
+    const cat = String($(this).data("cat") || "");
+    if (cat === "") {
+      FILTERS.query = "";
+      if (has("#brandSearch")) $("#brandSearch").val("");
+      FILTERS.category = "";
+    } else {
+      FILTERS.category = cat;
+    }
     renderAll();
+  });
+
+  $(document).on("click", ".sidebar-item.price", function () {
+    const min = $(this).data("min");
+    const max = $(this).data("max");
+    FILTERS.minPrice = (min === "" || min == null) ? null : Number(min);
+    FILTERS.maxPrice = (max === "" || max == null) ? null : Number(max);
+    renderAll();
+  });
+
+  if (has("#searchBtn")) {
+    $("#searchBtn").on("click", function () {
+      FILTERS.query = ($("#brandSearch").val() || "").trim();
+      renderAll();
+    });
+  }
+
+  if (has("#brandSearch")) {
+    $("#brandSearch").on("keyup", function (e) {
+      if (e.key === "Enter") {
+        FILTERS.query = ($("#brandSearch").val() || "").trim();
+        renderAll();
+      }
+    });
+  }
+
+  // INIT
+  (async function () {
+    try {
+      console.log("SHOP: loading json...");
+      updateCartBadge();
+      TOP_PRODUCTS = await loadJson(JSON_TOP);
+      NEW_PRODUCTS = await loadJson(JSON_NEW);
+      console.log("SHOP: loaded", TOP_PRODUCTS.length, NEW_PRODUCTS.length);
+      renderAll();
+    } catch (err) {
+      console.error("SHOP ERROR:", err);
+      if (has("#top-sales-display")) $("#top-sales-display").html(`<p style="color:#ff6b6b">Failed to load products.</p>`);
+      if (has("#whats-new-display")) $("#whats-new-display").html(`<p style="color:#ff6b6b">Failed to load products.</p>`);
+    }
   })();
 }
 
 /* =========================================================
    2) CART PAGE
+   (requires: #cartItems and #cartTotal)
 ========================================================= */
 function initCartPage() {
   if (!has("#cartItems")) return;
 
+  function saveCart(cart) {
+    setCart(cart);
+    updateCartBadge();
+  }
+
   function renderCart() {
     const cart = getCart();
     const items = Object.values(cart);
-    const container = document.getElementById("cartItems");
-    let total = 0;
 
     if (!items.length) {
-      container.innerHTML = "Empty cart";
-      document.getElementById("cartTotal").textContent = "0 DA";
+      $("#cartItems").html("Empty cart");
+      if (has("#cartTotal")) $("#cartTotal").text("0 DA");
       return;
     }
 
-    container.innerHTML = items.map(it => {
-      total += it.qty * it.price_num;
+    let total = 0;
+
+    const html = items.map(it => {
+      const price = num(it.price_num);
+      const qty = num(it.qty);
+      total += price * qty;
+
       return `
-        <div class="cart-item">
-          <img src="${it.image}">
-          <div class="cart-item-info">
-            <strong>${it.title}</strong>
-            <span>${moneyDA(it.price_num)}</span>
+        <div style="display:flex;gap:12px;align-items:center;border:1px solid #C5A059;padding:12px;border-radius:10px;margin:12px 0;background:#141414;">
+          <img src="${it.image || ""}" style="width:90px;height:90px;object-fit:cover;border-radius:10px;border:1px solid rgba(197,160,89,.4);">
+          <div style="flex:1;">
+            <strong style="color:#C5A059;display:block;margin-bottom:6px;">${it.title || ""}</strong>
+            <span style="color:#ccc;">${moneyDA(price)}</span>
           </div>
-          <div class="cart-actions">
-            <button onclick="updateQty('${it.id}', -1)">-</button>
-            <span>${it.qty}</span>
-            <button onclick="updateQty('${it.id}', 1)">+</button>
+
+          <div style="display:flex;align-items:center;gap:8px;">
+            <button class="dec" data-id="${it.id}" style="width:32px;height:32px;border:1px solid #C5A059;background:transparent;color:#fff;border-radius:6px;">-</button>
+            <span style="min-width:24px;text-align:center;">${qty}</span>
+            <button class="inc" data-id="${it.id}" style="width:32px;height:32px;border:1px solid #C5A059;background:transparent;color:#fff;border-radius:6px;">+</button>
           </div>
-          <button class="removeBtn" onclick="removeItem('${it.id}')">Remove</button>
+
+          <button class="rm" data-id="${it.id}" style="background:transparent;border:none;color:#ff5a5a;font-weight:800;">Remove</button>
         </div>
       `;
     }).join("");
 
-    document.getElementById("cartTotal").textContent = moneyDA(total);
+    $("#cartItems").html(html);
+    if (has("#cartTotal")) $("#cartTotal").text(moneyDA(total));
   }
 
-  window.updateQty = function (id, d) {
+  $(document).on("click", ".inc", function () {
+    const id = $(this).data("id");
     const cart = getCart();
     if (!cart[id]) return;
-    cart[id].qty += d;
-    if (cart[id].qty <= 0) delete cart[id];
-    setCart(cart);
-    updateCartBadge();
+    cart[id].qty += 1;
+    saveCart(cart);
     renderCart();
-  };
+  });
 
-  window.removeItem = function (id) {
+  $(document).on("click", ".dec", function () {
+    const id = $(this).data("id");
+    const cart = getCart();
+    if (!cart[id]) return;
+    cart[id].qty -= 1;
+    if (cart[id].qty <= 0) delete cart[id];
+    saveCart(cart);
+    renderCart();
+  });
+
+  $(document).on("click", ".rm", function () {
+    const id = $(this).data("id");
     const cart = getCart();
     delete cart[id];
-    setCart(cart);
-    updateCartBadge();
+    saveCart(cart);
     renderCart();
-  };
+  });
 
+  updateCartBadge();
   renderCart();
 }
 
 /* =========================================================
-   3) SERVICES PAGE (ONCLICK – CLEAN)
+   3) CHECKOUT PAGE
+   (requires: #wilaya + #livraisonType + totals ids)
 ========================================================= */
+function initCheckout() {
+  if (!has("#wilaya") || !has("#livraisonType")) return;
 
-// Delivery
-function openDeliveryModal() {
-  document.getElementById("deliveryModal").style.display = "flex";
-}
-function closeDeliveryModal() {
-  document.getElementById("deliveryModal").style.display = "none";
-}
+  const DELIVERY = {
+    "01": { name: "Adrar", bureau: 1000, domicile: 1400 },
+    "02": { name: "Chlef", bureau: 500, domicile: 850 },
+    "03": { name: "Laghouat", bureau: 500, domicile: 950 },
+    "04": { name: "Oum El Bouaghi", bureau: 500, domicile: 850 },
+    "05": { name: "Batna", bureau: 500, domicile: 850 },
+    "06": { name: "Bejaia", bureau: 350, domicile: 800 },
+    "07": { name: "Biskra", bureau: 600, domicile: 950 },
+    "08": { name: "Bechar", bureau: 650, domicile: 1000 },
+    "09": { name: "Blida", bureau: 600, domicile: 850 },
+    "10": { name: "Bouira", bureau: 500, domicile: 850 },
+    "11": { name: "Tamanrasset", bureau: 1200, domicile: 1700 },
+    "12": { name: "Tebessa", bureau: 500, domicile: 900 },
+    "13": { name: "Tlemcen", bureau: 500, domicile: 750 },
+    "14": { name: "Tiaret", bureau: 500, domicile: 800 },
+    "15": { name: "Tizi Ouzou", bureau: 500, domicile: 850 },
+    "16": { name: "Alger", bureau: 400, domicile: 650 },
+    "17": { name: "Djelfa", bureau: 600, domicile: 950 },
+    "18": { name: "Jijel", bureau: 500, domicile: 850 },
+    "19": { name: "Setif", bureau: 500, domicile: 850 },
+    "20": { name: "Saida", bureau: 600, domicile: 750 },
+    "21": { name: "Skikda", bureau: 500, domicile: 750 },
+    "22": { name: "Sidi Bel Abbes", bureau: 500, domicile: 750 },
+    "23": { name: "Annaba", bureau: 500, domicile: 850 },
+    "24": { name: "Guelma", bureau: 500, domicile: 850 },
+    "25": { name: "Constantine", bureau: 500, domicile: 850 },
+    "26": { name: "Medea", bureau: 600, domicile: 850 },
+    "27": { name: "Mostaganem", bureau: 600, domicile: 850 },
+    "28": { name: "MSila", bureau: 600, domicile: 900 },
+    "29": { name: "Mascara", bureau: 500, domicile: 750 },
+    "30": { name: "Ouargla", bureau: 650, domicile: 1000 },
+    "31": { name: "Oran", bureau: 500, domicile: 750 },
+    "32": { name: "El Bayadh", bureau: 700, domicile: 1200 },
+    "33": { name: "Illizi", bureau: 1000, domicile: 1700 },
+    "34": { name: "Bordj Bou Arreridj", bureau: 500, domicile: 850 },
+    "35": { name: "Boumerdes", bureau: 500, domicile: 800 },
+    "36": { name: "El Tarf", bureau: 500, domicile: 900 },
+    "37": { name: "Tindouf", bureau: 1000, domicile: 1700 },
+    "38": { name: "Tissemsilt", bureau: 500, domicile: 850 },
+    "39": { name: "El Oued", bureau: 650, domicile: 1000 },
+    "40": { name: "Khenchela", bureau: 500, domicile: 850 },
+    "41": { name: "Souk Ahras", bureau: 500, domicile: 850 },
+    "42": { name: "Tipaza", bureau: 500, domicile: 850 },
+    "43": { name: "Mila", bureau: 500, domicile: 850 },
+    "44": { name: "Ain Defla", bureau: 500, domicile: 800 },
+    "45": { name: "Naama", bureau: 600, domicile: 1000 },
+    "46": { name: "Ain Temouchent", bureau: 350, domicile: 500 },
+    "47": { name: "Ghardaia", bureau: 600, domicile: 950 },
+    "48": { name: "Relizane", bureau: 500, domicile: 800 },
+    "49": { name: "El M'Ghair", bureau: 850, domicile: 1000 },
+    "50": { name: "El Meniaa", bureau: 850, domicile: 1000 },
+    "51": { name: "Ouled Djellal", bureau: 600, domicile: 1000 },
+    "52": { name: "Beni Abbes", bureau: 600, domicile: 850 },
+    "53": { name: "Timimoun", bureau: 1000, domicile: 1400 },
+    "54": { name: "Touggourt", bureau: 650, domicile: 1000 },
+    "55": { name: "Djanet", bureau: 1000, domicile: 1700 },
+    "56": { name: "In Salah", bureau: 1000, domicile: 1700 },
+    "57": { name: "In Guezzam", bureau: 1000, domicile: 1700 },
+    "58": { name: "Bordj Badji Mokhtar", bureau: 600, domicile: 850 }
+  };
 
-// Repair
-function openRepairModal() {
-  document.getElementById("repairModal").style.display = "flex";
-}
-function closeRepairModal() {
-  document.getElementById("repairModal").style.display = "none";
-}
+  let discount = 0;
 
-// Warranty
-function openWarrantyModal() {
-  document.getElementById("warrantyModal").style.display = "flex";
-}
-function closeWarrantyModal() {
-  document.getElementById("warrantyModal").style.display = "none";
-}
+  function productsTotal() {
+    const cart = getCart();
+    return Object.values(cart).reduce((s, it) => s + (num(it.price_num) * num(it.qty)), 0);
+  }
 
-// Trade
-function openTradeModal() {
-  document.getElementById("tradeModal").style.display = "flex";
-}
-function closeTradeModal() {
-  document.getElementById("tradeModal").style.display = "none";
-}
+  function fillWilayas() {
+    const $w = $("#wilaya");
+    $w.html(`<option value="">choose...</option>`);
+    Object.entries(DELIVERY).forEach(([code, w]) => {
+      $w.append(`<option value="${code}">${code} - ${w.name}</option>`);
+    });
+  }
 
-// Setup
-function openSetupModal() {
-  document.getElementById("setupModal").style.display = "flex";
-}
-function closeSetupModal() {
-  document.getElementById("setupModal").style.display = "none";
-}
+  function deliveryFee() {
+    const w = $("#wilaya").val();
+    const t = $("#livraisonType").val();
+    if (!w || !t) return 0;
+    return Number(DELIVERY[w][t]);
+  }
 
-// Support
-function openSupportModal() {
-  document.getElementById("supportModal").style.display = "flex";
-}
-function closeSupportModal() {
-  document.getElementById("supportModal").style.display = "none";
+  
+
+  function renderOrderItems() {
+    if (!has("#orderItems")) return;
+
+    const cart = getCart();
+    const items = Object.values(cart);
+
+    const count = items.reduce((s, it) => s + num(it.qty), 0);
+    if (has("#orderCount")) $("#orderCount").text(`${count} items`);
+
+    if (!items.length) {
+      $("#orderItems").html(`<div class="order-empty">Empty cart</div>`);
+      return;
+    }
+
+    const html = items.map(it => {
+      const qty = num(it.qty);
+      const price = num(it.price_num != null ? it.price_num : it.priceNum);
+      const lineTotal = qty * price;
+
+      return `
+        <div class="order-item">
+          <div class="order-left">
+            <img class="order-img" src="${it.image || ""}" alt="">
+            <div class="order-info">
+              <div class="order-name">${it.title || "Item"}</div>
+              <div class="order-meta">Qty: <b>${qty}</b> × ${moneyDA(price)}</div>
+            </div>
+          </div>
+          <div class="order-right">${moneyDA(lineTotal)}</div>
+        </div>
+      `;
+    }).join("");
+
+    $("#orderItems").html(html);
+  }
+
+  function refresh() {
+    const sub = productsTotal();
+    const ship = deliveryFee();
+    const total = Math.max(0, sub + ship - discount);
+
+    if (has("#sumProducts")) $("#sumProducts").text(moneyDA(sub));
+    if (has("#sumDelivery")) $("#sumDelivery").text(moneyDA(ship));
+    if (has("#sumDiscount")) $("#sumDiscount").text(moneyDA(discount));
+    if (has("#sumTotal")) $("#sumTotal").text(moneyDA(total));
+
+    renderOrderItems();
+  }
+
+  $(document).on("change", "#wilaya", function () {
+
+    refresh();
+  });
+
+  $(document).on("change", "#livraisonType", function () {
+
+    refresh();
+  });
+
+  $("#checkoutBtn").on("click", function () {
+    const cart = getCart();
+
+    if (!Object.keys(cart).length) return alert("Panier vide.");
+    if (!$("#nom").val().trim() || !$("#prenom").val().trim() || !$("#tel").val().trim())
+      return alert("add First name / Last Name / Phone.");
+    if (!$("#wilaya").val() || !$("#livraisonType").val() || !$("#email").val())
+      return alert("add State / Type livraison / email.");
+
+    const payload = {
+      nom: $("#nom").val().trim(),
+      prenom: $("#prenom").val().trim(),
+      tel: $("#tel").val().trim(),
+      wilaya: $("#wilaya").val(),
+      livraisonType: $("#livraisonType").val(),
+      email: $("#email").val(),
+      subtotal: productsTotal(),
+      shipping: deliveryFee(),
+      discount,
+      total: Math.max(0, productsTotal() + deliveryFee() - discount),
+      items: Object.values(cart)
+    };
+
+    console.log("ORDER:", payload);
+
+    setCart({});
+    updateCartBadge();
+    refresh();
+
+    window.location.href = "shop.html";
+  });
+
+  $(document).ready(function () {
+    fillWilayas();
+    refresh();
+  });
 }
 
 /* =========================================================
-   4) BOOTSTRAP
+   4) SERVICES PAGE (Modals)
 ========================================================= */
-document.addEventListener("DOMContentLoaded", function () {
+function initServicesModals() {
+  window.openModal = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = "flex";
+  };
+
+  window.closeModal = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = "none";
+  };
+
+  window.openDeliveryModal = () => window.openModal("deliveryModal");
+  window.closeDeliveryModal = () => window.closeModal("deliveryModal");
+
+  window.openRepairModal = () => window.openModal("repairModal");
+  window.closeRepairModal = () => window.closeModal("repairModal");
+
+  window.openWarrantyModal = () => window.openModal("warrantyModal");
+  window.closeWarrantyModal = () => window.closeModal("warrantyModal");
+
+  window.openTradeModal = () => window.openModal("tradeModal");
+  window.closeTradeModal = () => window.closeModal("tradeModal");
+
+  window.openSetupModal = () => window.openModal("setupModal");
+  window.closeSetupModal = () => window.closeModal("setupModal");
+
+  window.openSupportModal = () => window.openModal("supportModal");
+  window.closeSupportModal = () => window.closeModal("supportModal");
+}
+
+/* =========================================================
+   5) BOOTSTRAP
+========================================================= */
+$(document).ready(function () {
   updateCartBadge();
   initShop();
   initCartPage();
+  initCheckout();
+  initServicesModals();
 });
