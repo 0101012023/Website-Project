@@ -279,3 +279,23 @@ body {
     background: #f0c94f;
 }
 
+/* ================== Logout Button ================== */
+.logout-container {
+    margin: 20px 5%;
+    text-align: center;
+}
+
+.logout-btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #C5A059;
+    background: #C5A059;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background: #f0c94f;
+}

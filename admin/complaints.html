@@ -4,117 +4,268 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Client Complaints | Aymen Phone</title>
-    <link rel="stylesheet" href="complaints.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ================== General Reset ================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        body {
+            background-color: #000000;
+            color: #F4F4F4;
+            scroll-behavior: smooth;
+        }
+
+        /* ================== Navbar ================== */
+        .navbar {
+            background-color: #141414;
+            padding: 1rem 5%;
+            border-bottom: 1px solid #C5A059;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .logo-text h1 {
+            color: #C5A059;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .logo-text p {
+            color: #888;
+            font-size: 0.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* ================== Back Button ================== */
+        .back-dashboard {
+            margin: 20px 5%;
+        }
+
+        .back-dashboard button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: 1px solid #C5A059;
+            background: #C5A059;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .back-dashboard button:hover {
+            background: #f0c94f;
+        }
+
+        /* ================== Complaints Container ================== */
+        .admin-stocks-container {
+            max-width: 1300px;
+            margin: 30px auto;
+            padding: 0 5%;
+        }
+
+        .admin-stocks-container h2 {
+            color: #C5A059;
+            margin-bottom: 20px;
+        }
+
+        /* ================== Complaint Cards ================== */
+        #complaintsContainer {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .complaint-card {
+            background-color: #141414;
+            border: 1px solid #C5A059;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
+        }
+
+        .complaint-card h4 {
+            color: #C5A059;
+            margin-bottom: 10px;
+        }
+
+        .complaint-card p {
+            margin-bottom: 8px;
+            color: #F4F4F4;
+        }
+
+        /* ================== Reply Area ================== */
+        .reply-area {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .reply-area textarea {
+            width: 100%;
+            min-height: 60px;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #C5A059;
+            background-color: #000;
+            color: #F4F4F4;
+            resize: vertical;
+            outline: none;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .reply-area textarea:focus {
+            border-color: #fff;
+            box-shadow: 0 0 10px rgba(197, 160, 89, 0.5);
+        }
+
+        .reply-area button {
+            align-self: flex-start;
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            background-color: #C5A059;
+            color: #000;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .reply-area button:hover {
+            background-color: #f0c94f;
+            transform: translateY(-2px);
+            box-shadow: 0 0 10px rgba(197,160,89,0.5);
+        }
+
+        .reply-area button:disabled {
+            background-color: #4CAF50;
+            cursor: default;
+            color: white;
+        }
+
+        /* ================== Responsive ================== */
+        @media (max-width: 768px) {
+            .complaint-card {
+                padding: 15px;
+            }
+
+            .reply-area textarea {
+                min-height: 50px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo-text">
-                <h1>AYMEN PHONE</h1>
-                <p>STORE & SERVICES</p>
-            </div>
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo-text">
+            <h1>AYMEN PHONE</h1>
+            <p>STORE & SERVICES</p>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <div class="back-dashboard">
-        <a href="admin-dashboard.html">
-            <button>Back to Dashboard</button>
-        </a>
+<div class="back-dashboard">
+    <a href="admin-dashboard.html">
+        <button>Back to Dashboard</button>
+    </a>
+</div>
+
+<div class="admin-stocks-container">
+    <h2>Client Complaints</h2>
+
+    <div id="loadingStatus" style="text-align: center; margin-top: 20px; color: #C5A059;">
+        Fetching complaints from database...
     </div>
 
-    <div class="admin-stocks-container">
-        <h2>Client Complaints</h2>
+    <div id="complaintsContainer"></div>
+</div>
 
-        <div id="loadingStatus" style="text-align: center; margin-top: 20px; color: #C5A059;">
-            Fetching complaints from database...
-        </div>
+<script>
+    const container = document.getElementById("complaintsContainer");
+    const loadingStatus = document.getElementById("loadingStatus");
 
-        <div id="complaintsContainer"></div>
-    </div>
+    // ================== Sample Complaints Data ==================
+    let complaints = [
+        { id: 1, customer_name: "Aymen Benali", customer_email: "aymenben41@yahoo.com", subject: "Late Delivery", message: "My order n° 0013 has not arrived yet.", status: "pending", created_at: "2026-01-09", admin_reply: "" },
+        { id: 2, customer_name: "Sara B.", customer_email: "ssbsara@email.com", subject: "Wrong Product", message: "I received a different phone order n°0002", status: "pending", created_at: "2026-01-08", admin_reply: "" },
+        { id: 3, customer_name: "Mohamed A.", customer_email: "mohamedamine@email.com", subject: "Damaged Item", message: " order n°0003. The tablet screen is cracked.", status: "pending", created_at: "2026-01-07", admin_reply: "" }
+    ];
 
-    <script>
-        const container = document.getElementById("complaintsContainer");
-        const loadingStatus = document.getElementById("loadingStatus");
-
-        // ================== Fetch Complaints from API ==================
-        async function loadComplaints() {
-            try {
-                // Adjust the path below to match your actual folder structure
-                const response = await fetch('api/contact/get_allcontact.php');
-                const result = await response.json();
-
-                if (result.success) {
-                    loadingStatus.style.display = "none";
-                    renderComplaints(result.data);
-                } else {
-                    loadingStatus.textContent = "Error: " + result.message;
-                    loadingStatus.style.color = "red";
-                }
-            } catch (error) {
-                console.error("Fetch error:", error);
-                loadingStatus.textContent = "Connection to API failed.";
-                loadingStatus.style.color = "red";
-            }
+    // ================== Display Complaints ==================
+    function renderComplaints() {
+        container.innerHTML = "";
+        if (complaints.length === 0) {
+            container.innerHTML = "<p style='text-align:center;'>No complaints found.</p>";
+            return;
         }
 
-        // ================== Display Complaints ==================
-        function renderComplaints(data) {
-            container.innerHTML = ""; // Clear container
+        complaints.forEach((c) => {
+            const card = document.createElement("div");
+            card.classList.add("complaint-card");
 
-            if (data.length === 0) {
-                container.innerHTML = "<p style='text-align:center;'>No complaints found in the database.</p>";
-                return;
-            }
+            card.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h4>${c.subject || 'General Inquiry'} #${c.id}</h4>
+                    <span style="font-size: 0.8rem; font-weight:bold; padding:2px 8px; border-radius:4px; background:${c.admin_reply ? '#4CAF50' : '#C5A059'}; color:${c.admin_reply ? '#fff' : '#000'}">
+                        ${c.admin_reply ? 'Sent' : c.status.toUpperCase()}
+                    </span>
+                </div>
+                <p><strong>Client:</strong> ${c.customer_name}</p>
+                <p><strong>Email:</strong> ${c.customer_email}</p>
+                <p><strong>Time:</strong> ${c.created_at}</p>
+                <p><strong>Message:</strong> ${c.message}</p>
 
-            data.forEach((c) => {
-                const card = document.createElement("div");
-                card.classList.add("complaint-card");
+                <div class="reply-area">
+                    <textarea id="reply-text-${c.id}" placeholder="Write your reply..." ${c.admin_reply ? 'disabled' : ''}>${c.admin_reply || ''}</textarea>
+                    <button onclick="handleReply(${c.id}, '${c.customer_email}')" ${c.admin_reply ? 'disabled' : ''}>
+                        ${c.admin_reply ? 'Sent' : 'Send'}
+                    </button>
+                </div>
+            `;
 
-                // Mapping API fields: customer_name, customer_email, subject, message, status, created_at
-                card.innerHTML = `
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <h4>${c.subject || 'General Inquiry'} #${c.id}</h4>
-                        <span style="font-size: 0.8rem; background: #C5A059; color: #000; padding: 2px 8px; border-radius: 4px; font-weight: bold;">
-                            ${c.status.toUpperCase()}
-                        </span>
-                    </div>
-                    <p><strong>Client:</strong> ${c.customer_name}</p>
-                    <p><strong>Email:</strong> ${c.customer_email}</p>
-                    <p><strong>Time:</strong> ${c.created_at}</p>
-                    <p><strong>Message:</strong> ${c.message}</p>
+            container.appendChild(card);
+        });
+    }
 
-                    <div class="reply-area">
-                        <textarea id="reply-text-${c.id}" placeholder="Write your reply...">${c.admin_reply || ''}</textarea>
-                        <button onclick="handleReply(${c.id}, '${c.customer_email}')">
-                            ${c.admin_reply ? 'Update Reply' : 'Send'}
-                        </button>
-                    </div>
-                `;
+    // ================== Reply Action ==================
+    function handleReply(id, email) {
+        const textarea = document.getElementById(`reply-text-${id}`);
+        const replyContent = textarea.value.trim();
 
-                container.appendChild(card);
-            });
+        if (replyContent === "") {
+            alert("Please write a reply before sending.");
+            return;
         }
 
-        // ================== Reply Action ==================
-        function handleReply(id, email) {
-            const textarea = document.getElementById(`reply-text-${id}`);
-            const replyContent = textarea.value.trim();
+        const complaint = complaints.find(c => c.id === id);
+        complaint.admin_reply = replyContent;
+        complaint.status = "sent";
 
-            if (replyContent === "") {
-                alert("Please write a reply before sending.");
-                return;
-            }
+        renderComplaints();
+        alert(`Reply sent to ${email}`);
+        console.log(`Reply to ID ${id}: ${replyContent}`);
+    }
 
-            // Here you would typically call another API to save the reply in the DB
-            // For now, we simulate the success as per your original logic
-            alert(`Reply saved and notification logic triggered for: ${email}`);
-            console.log(`Replying to ID ${id} with content: ${replyContent}`);
-        }
+    renderComplaints();
+</script>
 
-        // Initialize the page
-        loadComplaints();
-    </script>
 </body>
 </html>

@@ -429,3 +429,51 @@ $(document).ready(function () {
   initCheckout();
   initServicesModals();
 });
+function openRepairModal() {
+  document.getElementById("repairModal").style.display = "flex";
+}
+function closeRepairModal() {
+  document.getElementById("repairModal").style.display = "none";
+}
+
+function openDeliveryModal() {
+  document.getElementById("deliveryModal").style.display = "flex";
+}
+function closeDeliveryModal() {
+  document.getElementById("deliveryModal").style.display = "none";
+}
+
+function openWarrantyModal() {
+  document.getElementById("warrantyModal").style.display = "flex";
+}
+function closeWarrantyModal() {
+  document.getElementById("warrantyModal").style.display = "none";
+}
+
+function openTradeModal() {
+  document.getElementById("tradeModal").style.display = "flex";
+}
+function closeTradeModal() {
+  document.getElementById("tradeModal").style.display = "none";
+}
+
+function openSetupModal() {
+  document.getElementById("setupModal").style.display = "flex";
+}
+function closeSetupModal() {
+  document.getElementById("setupModal").style.display = "none";
+}
+
+function openSupportModal() {
+  document.getElementById("supportModal").style.display = "flex";
+}
+function closeSupportModal() {
+  document.getElementById("supportModal").style.display = "none";
+}
+
+/* Close modal when clicking outside */
+window.onclick = function(event) {
+  if (event.target.classList.contains("modal")) {
+    event.target.style.display = "none";
+  }
+};
