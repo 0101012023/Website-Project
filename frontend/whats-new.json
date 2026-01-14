@@ -1,0 +1,62 @@
+[
+  {
+    "id": "wn1",
+    "title": "iPhone 15 Pro",
+    "description": "Apple flagship with titanium design",
+    "price_num": 195000,
+    "brand": "Apple",
+    "category": "Phones",
+    "image": "https://fonez.ie/cdn/shop/files/iPhone15ProBlueTitanium_1024x.webp?v=1741000684",
+    "specs": {
+      "RAM": "8 GB",
+      "Storage": "256 GB",
+      "Color": "Natural Titanium",
+      "Battery": "3274 mAh"
+    }
+  },
+  
+  {
+    "id": "wn2",
+    "title": "Redmi Note 13 Pro",
+    "description": "Affordable phone with AMOLED display",
+    "price_num": 58000,
+    "brand": "Redmi",
+    "category": "Phones",
+    "image": "https://i0.wp.com/mstore.ie/wp-content/uploads/2024/02/Redmi-Note-13-Pro-5G-Purple.webp?fit=1600%2C1600&ssl=1",
+    "specs": {
+      "RAM": "8 GB",
+      "Storage": "256 GB",
+      "Display": "AMOLED",
+      "Battery": "5100 mAh"
+    }
+  },
+  {
+    "id": "wn3",
+    "title": "Huawei MatePad 11",
+    "description": "Powerful tablet for work and study",
+    "price_num": 82000,
+    "brand": "Huawei",
+    "category": "Tablets",
+    "image": "https://pimcdn.sharafdg.com/cdn-cgi/image/width=600,height=600,fit=pad,format=webp,quality=70/images/S200775083_1?1716883339",
+    "specs": {
+      "Screen": "11 inches",
+      "RAM": "6 GB",
+      "Storage": "128 GB",
+      "Battery": "7250 mAh"
+    }
+  },
+  {
+    "id": "wn4",
+    "title": "Anker Power Bank 20000mAh",
+    "description": "High capacity fast charging power bank",
+    "price_num": 7800,
+    "brand": "Anker",
+    "category": "Accessories",
+    "image": "https://dz.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/90/5145/1.jpg?5631",
+    "specs": {
+      "Capacity": "20000 mAh",
+      "Ports": "USB / USB-C",
+      "Fast Charge": "Yes"
+    }
+  }
+]

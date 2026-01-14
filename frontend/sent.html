@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Message Sent</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.success-box{
+    max-width:500px;
+    margin:120px auto;
+    background:rgb(30, 30, 30);
+    padding:40px;
+    text-align:center;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+.success-box i{
+    font-size:60px;
+    color:#28a745;
+    margin-bottom:15px;
+}
+.success-box h2{
+    margin-bottom:10px;
+}
+.success-box p{
+    color:#555;
+}
+</style>
+</head>
+<body>
+
+<div class="success-box">
+    <i class="fas fa-check-circle"></i>
+    <h2>Message Sent Successfully!</h2>
+    <p>Thank you for contacting Aymen Phone.</p>
+    <p>The shop owner will reply to you as soon as possible.</p>
+    <p>You will be redirected shortly...</p>
+</div>
+
+<script>
+setTimeout(() => {
+    window.location.href = "contact.html";
+}, 4000);
+</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</body>
+</html>
