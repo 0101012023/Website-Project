@@ -1,0 +1,172 @@
+/* ================== General Reset ================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background-color: #000000;
+    color: #F4F4F4;
+    scroll-behavior: smooth;
+}
+
+/* ================== Navbar ================== */
+.navbar {
+    background-color: #141414;
+    padding: 1rem 5%;
+    border-bottom: 1px solid #C5A059;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.logo-text h1 {
+    color: #C5A059;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.logo-text p {
+    color: #888;
+    font-size: 0.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* ================== Back Button ================== */
+.back-dashboard {
+    margin: 20px 5%;
+}
+
+.back-dashboard button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #C5A059;
+    background: #C5A059;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.back-dashboard button:hover {
+    background: #f0c94f;
+}
+
+/* ================== Complaints Container ================== */
+.admin-stocks-container {
+    max-width: 1300px;
+    margin: 30px auto;
+    padding: 0 5%;
+}
+
+.admin-stocks-container h2 {
+    color: #C5A059;
+    margin-bottom: 20px;
+}
+
+/* ================== Complaint Cards ================== */
+#complaintsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.complaint-card {
+    background-color: #141414;
+    border: 1px solid #C5A059;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
+}
+
+.complaint-card h4 {
+    color: #C5A059;
+    margin-bottom: 10px;
+}
+
+.complaint-card p {
+    margin-bottom: 8px;
+    color: #F4F4F4;
+}
+
+/* ================== Reply Area ================== */
+.reply-area {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.reply-area textarea {
+    width: 100%;
+    min-height: 60px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #C5A059;
+    background-color: #000;
+    color: #F4F4F4;
+    resize: vertical;
+    outline: none;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.reply-area textarea:focus {
+    border-color: #fff;
+    box-shadow: 0 0 10px rgba(197, 160, 89, 0.5);
+}
+
+.reply-area button {
+    align-self: flex-start;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    background-color: #C5A059;
+    color: #000;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.reply-area button:hover {
+    background-color: #f0c94f;
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px rgba(197,160,89,0.5);
+}
+
+/* ================== Responsive ================== */
+@media (max-width: 768px) {
+    .complaint-card {
+        padding: 15px;
+    }
+
+    .reply-area textarea {
+        min-height: 50px;
+    }
+}
+
+/* ================== Buttons and Card Action ================== */
+.delete-btn {
+    background: #C5A059;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: #000;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.delete-btn:hover {
+    background: #f0c94f;
+}

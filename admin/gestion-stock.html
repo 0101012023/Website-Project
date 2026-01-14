@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Management | Aymen Phone</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo-text">
+      <h1>AYMEN PHONE</h1>
+      <p>STORE & SERVICES</p>
+    </div>
+  </div>
+</nav>
+
+<div class="back-dashboard">
+  <a href="admin-dashboard.html"><button>Back to Dashboard</button></a>
+</div>
+
+<div class="admin-stocks-container">
+  <h2>Stock Management</h2>
+  
+  <br>
+
+  <div class="add-stock">
+    <input type="text" id="productName" placeholder="Product Name">
+    <input type="text" id="productBrand" placeholder="Brand">
+    
+    <select id="productCategory">
+      <option value="">Select Category</option>
+      <option value="Phones">Phones</option>
+      <option value="Tablets">Tablets</option>
+      <option value="Accessories">Accessories</option>
+      <option value="Airpods">Airpods</option>
+    </select>
+
+    <input type="number" id="productQty" placeholder="Quantity">
+    <input type="number" step="0.01" id="productPrice" placeholder="Price (DA)">
+    
+    <div style="display: flex; flex-direction: column; gap: 5px;">
+        <label style="font-size: 10px; color: #C5A059;">Main Image URL:</label>
+        <input type="text" id="productImage" placeholder="Image URL">
+    </div>
+    
+    <button id="addBtn">Add Product</button>
+  </div>
+
+  <table id="stockTable" class="stock-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Brand</th>
+        <th>Category</th>
+        <th>Quantity</th>
+        <th>Price (DA)</th>
+        <th>Image</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<script>
+const tableBody = document.querySelector("#stockTable tbody");
+
+// JSON products with initial quantities
+let products = [
+  { "id":"ap1","title":"iPhone 15 Pro","brand":"Apple","category":"Phones","price_num":195000,"stock_quantity":10,"image":"https://fonez.ie/cdn/shop/files/iPhone15ProBlueTitanium_1024x.webp?v=1741000684" },
+  { "id":"ap2","title":"Redmi Note 13 Pro","brand":"Redmi","category":"Phones","price_num":58000,"stock_quantity":15,"image":"https://i0.wp.com/mstore.ie/wp-content/uploads/2024/02/Redmi-Note-13-Pro-5G-Purple.webp?fit=1600%2C1600&ssl=1" },
+  { "id":"ap3","title":"Huawei MatePad 11","brand":"Huawei","category":"Tablets","price_num":82000,"stock_quantity":8,"image":"https://pimcdn.sharafdg.com/cdn-cgi/image/width=600,height=600,fit=pad,format=webp,quality=70/images/S200775083_1?1716883339" },
+  { "id":"ap4","title":"Anker Power Bank 20000mAh","brand":"Anker","category":"Accessories","price_num":7800,"stock_quantity":25,"image":"https://dz.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/90/5145/1.jpg?5631" },
+  { "id":"ap5","title":"Samsung Galaxy S24 Ultra","brand":"Samsung","category":"Phones","price_num":215000,"stock_quantity":7,"image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJRtISxuURSp7ognfp76nQn9-WUatrTANVRw&s" },
+  { "id":"ap6","title":"AirPods Pro 2nd Gen","brand":"Apple","category":"Airpods","price_num":42000,"stock_quantity":20,"image":"https://incredideals.co/cdn/shop/files/MTJV3.webp?v=1733468352" },
+  { "id":"ap7","title":"iPad Air M2","brand":"Apple","category":"Tablets","price_num":145000,"stock_quantity":12,"image":"https://www.wonderprice.co.uk/image/cache/wp/gp/Apple/apple-ipad-air-2024-space-grey-1-800x800.webp" },
+  { "id":"ap8","title":"Logitech MX Master 3S","brand":"Logitech","category":"Accessories","price_num":18500,"stock_quantity":18,"image":"https://www.istudio.store/cdn/shop/files/logitech_mx_master_3s_-_graphite_097855175359.webp?v=1716795724&width=823" },
+  { "id":"ap9","title":"Realme Buds Air 5","brand":"Realme","category":"Airpods","price_num":8500,"stock_quantity":30,"image":"https://maajkart.com/wp-content/uploads/Realme-Buds-Air-5-2.webp" },
+  { "id":"ap10","title":"Samsung Galaxy Tab S9","brand":"Samsung","category":"Tablets","price_num":125000,"stock_quantity":6,"image":"https://iservicejo.com/wp-content/uploads/2024/08/SM-X616BZAAMEA_000_0002_33fb860b-f791-4822-bb00-19cb9166d23a_1920x.png.webp" }
+];
+
+// Render table with editable quantity
+function renderTable() {
+    tableBody.innerHTML = "";
+    products.forEach((prod, index) => {
+        const row = tableBody.insertRow();
+        row.innerHTML = `
+            <td>${prod.title}</td>
+            <td>${prod.brand}</td>
+            <td>${prod.category}</td>
+            <td contenteditable="true" class="editable-qty">${prod.stock_quantity}</td>
+            <td>${prod.price_num.toLocaleString()} DA</td>
+            <td><img src="${prod.image}" width="50" style="border-radius:4px;"></td>
+            <td><button onclick="deleteProduct(${index})">Delete</button></td>
+        `;
+        // Update stock_quantity on edit
+        const qtyCell = row.querySelector(".editable-qty");
+        qtyCell.addEventListener("blur", () => {
+            const newQty = parseInt(qtyCell.textContent);
+            if (!isNaN(newQty) && newQty >= 0) {
+                prod.stock_quantity = newQty;
+            } else {
+                qtyCell.textContent = prod.stock_quantity; // revert invalid input
+                alert("Quantity must be a number >= 0");
+            }
+        });
+    });
+}
+
+// Add Product
+document.getElementById("addBtn").addEventListener("click", () => {
+    const title = document.getElementById("productName").value.trim();
+    const brand = document.getElementById("productBrand").value.trim();
+    const category = document.getElementById("productCategory").value;
+    const qty = parseInt(document.getElementById("productQty").value);
+    const price = parseFloat(document.getElementById("productPrice").value);
+    const image = document.getElementById("productImage").value.trim();
+
+    if (!title || !brand || !category || isNaN(qty) || isNaN(price) || !image) {
+        alert("Please fill all fields!");
+        return;
+    }
+
+    products.push({ title, brand, category, stock_quantity: qty, price_num: price, image });
+    renderTable();
+
+    // Clear inputs
+    document.getElementById("productName").value = "";
+    document.getElementById("productBrand").value = "";
+    document.getElementById("productCategory").value = "";
+    document.getElementById("productQty").value = "";
+    document.getElementById("productPrice").value = "";
+    document.getElementById("productImage").value = "";
+});
+
+// Delete Product
+function deleteProduct(index) {
+    if (confirm("Are you sure you want to delete this product?")) {
+        products.splice(index, 1);
+        renderTable();
+    }
+}
+
+// Initial Render
+renderTable();
+</script>
+
+</body>
+</html>

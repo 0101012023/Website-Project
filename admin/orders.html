@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders | Aymen Phone</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo-text">
+            <h1>AYMEN PHONE</h1>
+            <p>STORE & SERVICES</p>
+        </div>
+    </div>
+</nav>
+
+<div class="back-dashboard">
+    <a href="admin-dashboard.html"><button>Back to Dashboard</button></a>
+</div>
+
+<div class="admin-stocks-container">
+    <h2>Orders Management</h2>
+    <p>View and manage all customer orders from the database.</p>
+
+    <table id="ordersTable" class="stock-table">
+        <thead>
+            <tr>
+                <th>Ref</th>
+                <th>Client Name</th>
+                <th>Phone</th>
+                <th>Wilaya</th>
+                <th>Delivery</th>
+                <th>Total (DA)</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<script>
+// Sample orders data
+let orders = [
+    { ref: "ORD0001", client: "Aymen Benali", phone: "0550123456", wilaya: "Algiers", delivery: "Home", total: 195000, status: "Pending", date: "2026-01-09" },
+    { ref: "ORD0002", client: "Sara Bensetta", phone: "0660987654", wilaya: "Oran", delivery: "Pickup", total: 58000, status: "Delivered", date: "2026-01-08" },
+    { ref: "ORD0003", client: "Mohamed Amine", phone: "0550551234", wilaya: "Blida", delivery: "Home", total: 125000, status: "Delivered", date: "2026-01-07" },
+    { ref: "ORD0004", client: "Leila Khald", phone: "0771234567", wilaya: "Annaba", delivery: "Home", total: 42000, status: "Pending", date: "2026-01-09" },
+    { ref: "ORD0005", client: "Noureddine Masa", phone: "0559988776", wilaya: "Constantine", delivery: "Pickup", total: 145000, status: "Shipped", date: "2026-01-06" },
+    { ref: "ORD0013", client: "Aymen Benali", phone: "0554975641", wilaya: "Constantine", delivery: "Pickup", total: 205000, status: "Pending", date: "2026-01-06" }
+];
+
+// Render Orders Table
+function renderOrders() {
+    const tbody = document.querySelector("#ordersTable tbody");
+    tbody.innerHTML = "";
+
+    orders.forEach((order, index) => {
+        const row = tbody.insertRow();
+        row.innerHTML = `
+            <td>${order.ref}</td>
+            <td>${order.client}</td>
+            <td>${order.phone}</td>
+            <td>${order.wilaya}</td>
+            <td>${order.delivery}</td>
+            <td>${order.total.toLocaleString()} DA</td>
+            <td contenteditable="true" class="editable-status">${order.status}</td>
+            <td>${order.date}</td>
+            <td><button onclick="deleteOrder(${index})">Delete</button></td>
+        `;
+
+        // Allow inline editing of status
+        const statusCell = row.querySelector(".editable-status");
+        statusCell.addEventListener("blur", () => {
+            const newStatus = statusCell.textContent.trim();
+            if(newStatus) {
+                order.status = newStatus;
+            } else {
+                statusCell.textContent = order.status;
+                alert("Status cannot be empty!");
+            }
+        });
+    });
+}
+
+// Delete order
+function deleteOrder(index) {
+    if(confirm("Are you sure you want to delete this order?")) {
+        orders.splice(index, 1);
+        renderOrders();
+    }
+}
+
+// Initial render
+renderOrders();
+</script>
+
+</body>
+</html>

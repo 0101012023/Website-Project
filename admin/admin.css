@@ -1,0 +1,301 @@
+/* ================== General Reset ================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background-color: #000000;
+    color: #F4F4F4;
+    scroll-behavior: smooth;
+}
+
+/* ================== Navbar (kept from main site) ================== */
+.navbar {
+    background-color: #141414;
+    padding: 1rem 5%;
+    border-bottom: 1px solid #C5A059;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.logo-text h1 {
+    color: #C5A059;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.logo-text p {
+    color: #888;
+    font-size: 0.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #C5A059;
+}
+
+/* ================== Admin Login Container ================== */
+.admin-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    margin: 80px auto 0; /* margin top to avoid navbar */
+}
+
+.admin-card {
+    background-color: #141414;
+    border: 1px solid #C5A059;
+    border-radius: 12px;
+    padding: 40px 30px;
+    box-shadow: 0 0 30px rgba(197, 160, 89, 0.3);
+    text-align: center;
+}
+
+.admin-title {
+    color: #C5A059;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(197, 160, 89, 0.3);
+}
+
+.admin-card input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #C5A059;
+    border-radius: 6px;
+    background-color: #000;
+    color: #F4F4F4;
+    font-size: 0.9rem;
+    outline: none;
+    transition: 0.3s;
+}
+
+.admin-card input:focus {
+    border-color: #fff;
+    box-shadow: 0 0 10px rgba(197, 160, 89, 0.5);
+}
+
+.admin-card button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #C5A059;
+    color: #141414;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.admin-card button:hover {
+    box-shadow: 0 0 20px rgba(197, 160, 89, 0.5);
+    transform: translateY(-2px);
+}
+
+#errorMsg {
+    color: #FF5555;
+    font-size: 0.85rem;
+    margin-top: 10px;
+}
+
+@media (max-width: 500px) {
+    .admin-card {
+        padding: 30px 20px;
+    }
+
+    .admin-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* ================== Gestion des Stocks Page ================== */
+.admin-stocks-container {
+    max-width: 1300px;
+    margin: 30px auto;
+    padding: 0 5%;
+}
+
+.admin-stocks-container h2 {
+    color: #C5A059;
+    margin-bottom: 20px;
+}
+
+.add-stock {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.add-stock input, .add-stock button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #C5A059;
+    background: #141414;
+    color: #fff;
+    outline: none;
+}
+
+.add-stock button {
+    background: #C5A059;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.add-stock button:hover {
+    background: #f0c94f;
+}
+
+.stock-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.stock-table th, .stock-table td {
+    border: 1px solid #C5A059;
+    padding: 10px;
+    text-align: left;
+}
+
+.stock-table th {
+    background: #C5A059;
+    color: #000;
+}
+
+.delete-btn {
+    background: #C5A059;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: #000;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.delete-btn:hover {
+    background: #f0c94f;
+}
+
+/* ================== Dashboard Buttons ================== */
+.dashboard-buttons {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.dashboard-btn {
+    flex: 1 1 200px;
+    text-align: center;
+    padding: 20px;
+    background-color: #C5A059;
+    color: #141414;
+    font-weight: 700;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.dashboard-btn:hover {
+    background-color: #f0c94f;
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(197,160,89,0.5);
+}
+
+                /* select category */
+.add-stock input, 
+.add-stock select,   /* added this line */
+.add-stock button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #C5A059;
+    background: #141414;
+    color: #545454;
+    outline: none;
+}
+
+.add-stock button {
+    background: #C5A059;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.add-stock button:hover {
+    background: #f0c94f;
+}
+
+/* button */
+.back-dashboard {
+    margin: 20px 0;
+}
+
+.back-dashboard button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #C5A059;
+    background: #C5A059;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.back-dashboard button:hover {
+    background: #f0c94f;
+}
+
+/* ================== Logout Button ================== */
+.logout-container {
+    margin: 20px 5%;
+    text-align: center;
+}
+
+.logout-btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #C5A059;
+    background: #C5A059;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background: #f0c94f;
+}
