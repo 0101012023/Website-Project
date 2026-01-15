@@ -1,0 +1,14 @@
+Options -Indexes
+
+<FilesMatch "(^\.|database\.php|mail\.php|auth\.php|helpers\.php)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [L]
+
+AddDefaultCharset UTF-8
